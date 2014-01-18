@@ -39,24 +39,28 @@ q:before, q:after {
     content: '';
     content: none;
 }
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
 /*******************************************************************************************
  * End of browser reset styles 
  *******************************************************************************************/
 
+/*******************************************************************************************
+ * App Setup
+ *******************************************************************************************/
 
 html, body {
-    margin: 0;
-    padding: 0;
     background: #fff;
     color: #ddd;
 
 }
 
-/* 
-==============================================
-Home Page 
-==============================================
-*/
+/*******************************************************************************************
+ * Home Page
+ *******************************************************************************************/
 
 h1{
     text-shadow: 0px -1px 0px #000;
@@ -83,9 +87,26 @@ Sections
         margin:auto;
       }
 
+    .main-button-menu{
+        width: 100%;
+    }
+
     button{
         display: block;
-        width: 100%;
+        width: 50%;
         margin: 10px auto 10px auto;
         border-radius: 5px;
+    }
+
+    button a{
+        text-decoration: none;
+    }
+
+    button input{
+        position: absolute;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
     }
