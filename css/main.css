@@ -53,9 +53,18 @@ a{
  *******************************************************************************************/
 
 html, body {
-    background: #fff;
+    background: #333;
     color: #ddd;
 
+}
+
+/*******************************************************************************************
+ * General
+ *******************************************************************************************/
+ 
+.container {
+    max-width: 75%;
+    margin: 20px auto;
 }
 
 /*******************************************************************************************
@@ -68,28 +77,11 @@ h1{
     text-align: center;
 }
 
- .layer-175 {
-    width: 30%;
-    height: 100vh;
-    background: #333;
-    display: block;
-    position: relative;
-    * top:25%;
-    left: 0;
-    right:0;
-    margin:auto;
-}
-
-.main-button-menu{
-    width: 100%;
-}
-
 button{
     display: block;
-    width: 50%;
-    margin: 10px auto 10px auto;
-    border-radius: 5px;
-    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    /*position: relative;*/
 }
 
 button a{    
