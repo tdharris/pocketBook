@@ -6,8 +6,8 @@
 <meta content="saving receipts and stuff like that">
 
 <!-- CSS -->
-<link rel="stylesheet" type="txt/css" href="http://yui.yahooapis.com/pure/0.3.0/grids-min.css">
-<link rel="stylesheet" type="txt/css" href="http://yui.yahooapis.com/pure/0.3.0/buttons-min.css">
+<!-- <link rel="stylesheet" type="txt/css" href="http://yui.yahooapis.com/pure/0.3.0/grids-min.css">
+<link rel="stylesheet" type="txt/css" href="http://yui.yahooapis.com/pure/0.3.0/buttons-min.css"> -->
 <link rel="stylesheet" type="txt/css" href="css/main.css">
 <link rel="stylesheet" type="txt/css" href="css/buttons.css">
 <link rel="stylesheet" type="txt/css" href="css/animations.css">
@@ -18,10 +18,17 @@
 <div class="layer-175">
 	
 	<h1>Pocket Book</h1>
-		<button class="pure-button pure-button-xlarge expandUp">Add Receipt</button>
-		<button class="pure-button pure-button-secondary pure-button-xlarge expandUp">My Receipts</button>
+		<nav class="main-button-menu">
+			<button class="pure-button pure-button-xlarge expandUp">
+				<span>Receipt</span>
+				<input type="file" accept="image/*" capture="camera" />
+			</button>
+			<button class="pure-button pure-button-secondary pure-button-xlarge expandUp">
+				<a href="components/myReceipts/myReceipts.html">My Receipts</a>
+			</button>
+		</nav>
 
-	<input type="file" accept="image/*" capture="camera" />
+	
 	
 </div>
 
