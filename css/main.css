@@ -96,6 +96,7 @@ Sections
         width: 50%;
         margin: 10px auto 10px auto;
         border-radius: 5px;
+        position: relative;
     }
 
     button a{
@@ -105,6 +106,10 @@ Sections
     button input{
         position: absolute;
         padding: 0;
+        margin: 0;
+        left: 0;
+        top: 0;
+        width: 200%
         font-size: 20px;
         cursor: pointer;
         opacity: 0;
