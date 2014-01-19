@@ -53,7 +53,7 @@ a{
  *******************************************************************************************/
 
 html, body {
-    background: #333;
+    /*background: #333;*/
     color: #ddd;
 
 }
@@ -62,6 +62,12 @@ html, body {
  * General
  *******************************************************************************************/
  
+.cl-title {
+    background-color: #333;
+}
+.fa-book {
+    margin-left: 10px;
+}
 .container {
     max-width: 75%;
     margin: 20px auto;
@@ -85,13 +91,6 @@ html, body {
  * Home Page
  *******************************************************************************************/
 
-button{
-    display: block;
-    width: 100%;
-    margin: 20px auto;
-    /*position: relative;*/
-}
-
 button a{    
     text-decoration: none;
 }
@@ -108,3 +107,110 @@ button input{
     opacity: 0;    
     filter: alpha(opacity=0);
 }
+
+/* 
+==============================================
+Buttons 
+==============================================
+*/
+
+    /* Colored buttons with rounded corners */
+    .pure-button,
+    .pure-button-primary,
+    .pure-button-success,
+    .pure-button-error,
+    .pure-button-warning,
+    .pure-button-secondary {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        display: block;
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .pure-button-success {
+        background: rgb(28, 184, 65); /* this is a green */
+    }
+
+    .pure-button-error {
+        background: rgb(202, 60, 60); /* this is a maroon */
+    }
+
+    .pure-button-warning {
+        background: rgb(223, 117, 20); /* this is an orange */
+    }
+
+    .pure-button-secondary {
+        background: rgb(66, 184, 221); /* this is a light blue */
+    }
+    .pure-button-dark {
+        background-color: #333;
+    }
+
+    /* Sizes */
+    .pure-button-xsmall {
+        font-size: 70%;
+    }
+
+    .pure-button-small {
+        font-size: 85%;
+    }
+
+    .pure-button-large {
+        font-size: 110%;
+    }
+
+    .pure-button-xlarge {
+        font-size: 125%;
+    }
+
+/* 
+==============================================
+Animations
+============================================== 
+*/
+
+    /* expandUp */
+    .expandUp{
+        animation-name: expandUp;
+        -webkit-animation-name: expandUp;   
+
+        animation-duration: 0.7s;   
+        -webkit-animation-duration: 0.7s;
+
+        animation-timing-function: ease;    
+        -webkit-animation-timing-function: ease;        
+
+        visibility: visible !important; 
+    }
+
+    @keyframes expandUp {
+        0% {
+            transform: translateY(100%) scale(0.6) scaleY(0.5);
+        }
+        60%{
+            transform: translateY(-7%) scaleY(1.12);
+        }
+        75%{
+            transform: translateY(3%);
+        }   
+        100% {
+            transform: translateY(0%) scale(1) scaleY(1);
+        }   
+    }
+
+    @-webkit-keyframes expandUp {
+        0% {
+            -webkit-transform: translateY(100%) scale(0.6) scaleY(0.5);
+        }
+        60%{
+            -webkit-transform: translateY(-7%) scaleY(1.12);
+        }
+        75%{
+            -webkit-transform: translateY(3%);
+        }   
+        100% {
+            -webkit-transform: translateY(0%) scale(1) scaleY(1);
+        }   
+    }
