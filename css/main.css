@@ -53,62 +53,43 @@ a{
  *******************************************************************************************/
 
 html, body {
-    background: #3d3d3d;
+    background: #333;
     color: #ddd;
 
 }
 
 /*******************************************************************************************
+ * General
+ *******************************************************************************************/
+ 
+.container {
+    max-width: 75%;
+    margin: 20px auto;
+}
+
+.darkInset {
+    text-align: center;
+    font-size: 4em;
+    font-family: 'Averia Libre', cursive;
+    color: rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+    /*margin-bottom: 1em;*/
+}
+
+.dark {
+    color: rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+}
+
+/*******************************************************************************************
  * Home Page
  *******************************************************************************************/
-.header-height{
-    position: relative;
-    height: 125px;
-    width: 100%;
-}
-
-header{
-    position: relative;
-    height: 100%;
-    max-height: 300px;
-    width: 100%;
-}
-
-div.logo{
-    position: absolute;
-    display: block;
-    background: url(http://prestonblaylock.com/development/images/main-logo.png) no-repeat center;
-    background-size: 100%;
-    top: 5%;
-    left: 5%;
-    height: 90%;
-    width: 90%;
-    margin: auto;
-}
-
- .layer-175 {
-    width: 70%;
-    min-width: 320px;
-    height: 100vh;
-    display: block;
-    position: relative;
-    top:25%;
-    left: 0;
-    right:0;
-    margin:auto;
-}
-
-.main-button-menu{
-    width: 100%;
-}
 
 button{
     display: block;
-    width: 50%;
-    height: 80%;
-    margin: 10px auto 10px auto;
-    border-radius: 5px;
-    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    /*position: relative;*/
 }
 
 button a{    
