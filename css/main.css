@@ -126,7 +126,7 @@ Buttons
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         display: block;
         width: 100%;
-        margin: 30px auto;
+        margin: 25px auto;
     }
 
     .pure-button-success {
@@ -162,7 +162,7 @@ Buttons
     }
 
     .pure-button-xlarge {
-        font-size: 125%;
+        font-size: 150%;
     }
 
 /* 
