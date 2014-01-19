@@ -53,19 +53,9 @@ a{
  *******************************************************************************************/
 
 html, body {
-<<<<<<< HEAD
     background: #3d3d3d;
     color: #ddd;
 
-}
-
-/*******************************************************************************************
- * General
- *******************************************************************************************/
- 
-.container {
-    max-width: 75%;
-    margin: 20px auto;
 }
 
 /*******************************************************************************************
@@ -87,12 +77,12 @@ header{
 div.logo{
     position: absolute;
     display: block;
-    background: url(c:/development/pocketBook/images/main-logo.png) no-repeat center;
+    background: url(http://prestonblaylock.com/development/images/main-logo.png) no-repeat center;
     background-size: 100%;
-    top: 15%;
-    left: 15%;
-    height: 70%;
-    width: 70%;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
     margin: auto;
 }
 
@@ -102,7 +92,7 @@ div.logo{
     height: 100vh;
     display: block;
     position: relative;
-    * top:25%;
+    top:25%;
     left: 0;
     right:0;
     margin:auto;
