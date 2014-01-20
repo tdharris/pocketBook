@@ -134,7 +134,7 @@ Footer
     font-size: 3em;
     letter-spacing: -1px;  
     padding: 10px; 
-    color: rgba(0,0,0,0.75);
+    color: rgba(0,0,0,0.4);
     text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
 }
 
@@ -159,6 +159,26 @@ button input{
     opacity: 0;    
     filter: alpha(opacity=0);
 }
+/* 
+==============================================
+addNew 
+==============================================
+*/
+.dropzone {
+    margin: 10px;
+    min-height: 50%;
+}
+.opacity {
+  opacity: 0.5;
+}
+.dz-message {
+    opacity: 0.5;
+    text-align: center;
+    color: #333;
+}
+.fa-camera {
+    font-size: 6em;
+}
 
 /* 
 ==============================================
@@ -178,7 +198,7 @@ Buttons
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         display: block;
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 8%;
     }
 
     .pure-button-success {
