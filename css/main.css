@@ -74,6 +74,7 @@ Header
 .fa-book {
     margin-left: 10px;
 }
+
 .container {
     max-width: 75%;
     margin: 20px auto;
@@ -82,7 +83,6 @@ Header
 .darkInset {
     text-align: center;
     font-size: 4em;
-    font-family: 'Averia Libre', cursive;
     color: rgba(0,0,0,0.6);
     text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
     /*margin-bottom: 1em;*/
