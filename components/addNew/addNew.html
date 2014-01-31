@@ -6,11 +6,11 @@
 <meta content="saving receipts and stuff like that">
 
 <!-- CSS -->
-	<link rel="stylesheet" type="txt/css" href="../../css/clank.min.css">
-	<link rel="stylesheet" type="txt/css" href="http://yui.yahooapis.com/pure/0.3.0/buttons-min.css">
+	<link rel="stylesheet" href="../../css/clank.min.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/buttons-min.css">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link rel="stylesheet" type="txt/css" href="../../css/dropzone.css">
-	<link rel="stylesheet" type="txt/css" href="../../css/main.css">
+	<link rel="stylesheet" href="../../css/dropzone.css">
+	<link rel="stylesheet" href="../../css/main.css">
 
 <!-- JS -->
 	<script type="text/javascript" src="../../js/dropzone.js"></script>
@@ -50,14 +50,14 @@
 	        	<div action="#" class="dropzone dz-clickable">
 				  <div class="dz-default dz-message">
 				  	<i class="fa fa-camera opacity"></i>
-				    <h4 class="opacity">Pick Image</h4>
+				    <h4 class="opacity">Select Image</h4>
 				  </div>
 				</div> 
 
 				<!-- <div class="bottom"> -->
 				<!-- <h1>Select Tags </h1> -->
 					<div class="cl-form">
-						<select multiple>
+						<select id="tags">
 							<option value="Apples">Trip to Japan</option>
 							<option value="Oranges">Hotel</option>
 							<option value="Bananas">Travel</option>
@@ -116,12 +116,12 @@
 	        	<div action="#" class="dropzone dz-clickable">
 				  <div class="dz-default dz-message">
 				  	<i class="fa fa-camera opacity"></i>
-				    <h4 class="opacity">Pick Image</h4>
+				    <h4 class="opacity">Select Image</h4>
 				  </div>
 				</div>  
 
 				<div class="cl-form">
-					<select multiple>
+					<select>
 						<option value="Apples">Trip to Japan</option>
 						<option value="Oranges">Hotel</option>
 						<option value="Bananas">Travel</option>
