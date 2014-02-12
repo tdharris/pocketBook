@@ -1,0 +1,8 @@
+library:
+	-getReceipts(): from localstorage, push to view (populate)
+	-getReceipt(): from cached library in js
+	-saveTags(): edit cached library that updates the view, and save to localstorage
+	-filterReceipts():
+
+addNew:
+

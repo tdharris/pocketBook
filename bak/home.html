@@ -5,21 +5,20 @@
 <title>Pocket Book</title>
 <meta content="saving receipts and stuff like that">
 
-<!-- CSS -->
-	<link rel="stylesheet" href="../../css/clank.min.css">
+	<!-- CSS -->
+	<!-- <link rel="stylesheet" type="txt/css" href="http://yui.yahooapis.com/pure/0.3.0/grids-min.css"> -->
+	<link rel="stylesheet" href="css/clank.min.css">
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/buttons-min.css">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../css/dropzone.css">
-	<link rel="stylesheet" href="../../css/main.css">
+	<link rel="stylesheet" href="css/main.css">
 
-<!-- JS -->
-	<script type="text/javascript" src="../../js/dropzone.js"></script>
+	<!-- JS -->
+
 </head>
 
 <body>
 
-
-<!-- BEGIN Android Wrapper -->
+	<!-- BEGIN Android Wrapper -->
 	<div class="cl-device-frame" style="float:left; width: 50%; margin-top: 40px">
 	  <div class="cl-device-wrap" data-os="android" data-device="galaxynexus-portrait">
 	    <div class="cl-device-body">
@@ -47,24 +46,18 @@
 
 	        </div>
 	        <div class="cl-content">
-	        	<div action="#" class="dropzone dz-clickable">
-				  <div class="dz-default dz-message">
-				  	<i class="fa fa-camera opacity"></i>
-				    <h4 class="opacity">Select Image</h4>
-				  </div>
-				</div> 
 
-				<!-- <div class="bottom"> -->
-				<!-- <h1>Select Tags </h1> -->
-					<div class="cl-form">
-						<select id="tags">
-							<option value="Apples">Trip to Japan</option>
-							<option value="Oranges">Hotel</option>
-							<option value="Bananas">Travel</option>
-						</select>
-					</div>	
-				<!-- </div> -->
+	        	<div class="top">
 	        		
+					<img src="http://images.turbotax.intuit.com/iqcms/marketing/lib/F109140320.jpg" class="slideLeft">
+					<div class="homeOverlay slideUp"><span>Easy Way <br> to Organize <br> Receipts</span></div>
+				</div>  
+
+				<div class="bottom">
+					<a href="components/addNew/addNew.html" class="pure-button pure-button-success pure-button-xlarge expandUp">Add Receipt</a>
+
+					<a href="components/myReceipts/myReceipts.html" class="pure-button pure-button-secondary pure-button-xlarge expandUp">My Receipts</a>	
+				</div>
 
 	        </div>
 
@@ -113,20 +106,17 @@
 	        </div>
 	        <div class="cl-content">
 
-	        	<div action="#" class="dropzone dz-clickable">
-				  <div class="dz-default dz-message">
-				  	<i class="fa fa-camera opacity"></i>
-				    <h4 class="opacity">Select Image</h4>
-				  </div>
+	        	<div class="top">
+	        		
+					<img src="http://images.turbotax.intuit.com/iqcms/marketing/lib/F109140320.jpg" class="slideLeft">
+					<div class="homeOverlay slideUp"><span>Easy Way <br> to Organize <br> Receipts</span></div>
 				</div>  
 
-				<div class="cl-form">
-					<select>
-						<option value="Apples">Trip to Japan</option>
-						<option value="Oranges">Hotel</option>
-						<option value="Bananas">Travel</option>
-					</select>
-				</div>	
+				<div class="bottom">
+					<a href="components/addNew/addNew.html" class="pure-button pure-button-success pure-button-xlarge expandUp">Add Receipt</a>
+
+					<a href="components/myReceipts/myReceipts.html" class="pure-button pure-button-secondary pure-button-xlarge expandUp">My Receipts</a>	
+				</div>
 
 	        </div>
 
@@ -140,19 +130,5 @@
 	  </div>
 	</div>
 	<!-- END iPhone Wrapper -->
-
-<!-- <div class="container">
-	<div class="container">
-		<i class="fa fa-camera" style="font-size: 8em;"></i>
-		Take Picture
-	</div>
-	
-</div> -->
-		
-
-	<!-- <input type="file" accept="image/*" capture /> -->
-
-</div>
-
 </body>
 </html>
