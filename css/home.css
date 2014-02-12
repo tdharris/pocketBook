@@ -60,7 +60,17 @@ html, body {
     padding: 0;
     margin: 0;
 }
-header, footer { z-index: 1; }
+header, footer { 
+	z-index: 1; 
+	position: fixed;
+	width: 100%;
+}
+header {
+	top: 0;
+}
+footer {
+	bottom: 0;
+}
 body {
     display: flex;
     flex-direction: column;
