@@ -64,6 +64,7 @@ header, footer {
 }
 header {
 	top: 0;
+	z-index: 2;
 }
 footer {
 	bottom: 0;
@@ -196,4 +197,49 @@ ul { list-style: none; }
    /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
    -webkit-align-content: flex-start;
    align-content: flex-start;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/********************To Be Merged Later****************************/
+#photo-container{
+	position: absolute;
+	background: blue;
+	width: 0px;
+	height: 100%;
+	z-index: 1;
+	display: none;
+}
+
+
+input{
+	position: absolute;
+	top: 200px;
+}
+#photo-container.slider{
+	width:100%;
+	height:100%;
+	transition:width 1s;
+	-webkit-transition:width 1s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition-timing-function: ease-in-out;
+}
+
+
+#photo-container.sliderdeactivated{
+	width:1%;
+	height:1%;
+	transition:width 2s;
+	-webkit-transition:width 2s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition-timing-function: ease-in-out;
 }
