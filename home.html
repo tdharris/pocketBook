@@ -5,18 +5,55 @@
 	<title>myLibrary</title>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/home.css">
+<<<<<<< HEAD
 	<link rel="stylesheet" href="css/dropzone.css">
 	<script type="text/javascript" src="js/dropzone.js"></script>
 </head>
+=======
+	<script type="text/javascript">
+		function displayCamera(){
+			var camera = document.getElementById('photo-container');
+			var check = hasClass(camera, 'slider');
+>>>>>>> 65cfc3d16fa816f4ef035ffb7bf0d9d0abae5cb6
 
-<body>
+			if(check == true){
+				camera.className = "sliderdeactivated";
+				
+			}
+			else{
+				camera.className = "slider";
+			}
 
-	<header class="dark">
-		PocketBook
+			// if(camera.style.width == "" || camera.style.width == '0px'){
+			// 	//camera.style.display = "block";
+			// 	camera.className = camera.className + " slider";
+			// }
+			// else{
+			// 	camera.style.width = "0px";
+			// 	camera.className = "";
+			// }
+			
+		};
+
+		function hasClass(element, className) {
+   				 return element.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(element.className);
+		};
+			
+
+		</script>
+	</head>
+
+	<body>
+
+		<header class="dark">
+			PocketBook
 		<i class="fa fa-share-square pull-right"></i>
 	</header>
-
+		<aside id="photo-container" class="sliderdeactivated">
+			<input type="file" id="take-picture" accept="image/*">
+		</aside>
 	<main>
+
 		<ul id="library" class="flexcontainer">
 			<li class="month">
 				<h2 class="month-name">month</h2>
@@ -133,7 +170,11 @@
 
 	<footer class="dark">
 		<i class="fa fa-list-ul pull-left"></i> 
+<<<<<<< HEAD
 		<a href="#example" ><i class="fa fa-plus pull-right"></i></a>
+=======
+		<i id="right" onclick="displayCamera()" class="fa fa-plus pull-right"></i>
+>>>>>>> 65cfc3d16fa816f4ef035ffb7bf0d9d0abae5cb6
 	</footer>
 
 </body>
