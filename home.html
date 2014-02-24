@@ -5,6 +5,8 @@
 	<title>myLibrary</title>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/dropzone.css">
+	<script type="text/javascript" src="js/dropzone.js"></script>
 </head>
 
 <body>
@@ -117,11 +119,21 @@
 		</ul>
 	</main>
 
-	<slideup></slideup>
+	<aside id="example" class="modal">
+	    <div>
+			<div action="#" class="dropzone dz-clickable">
+				<div class="dz-default dz-message">
+					<i class="fa fa-camera opacity"></i>
+				<h4 class="opacity">Select Image</h4>
+				</div>
+			</div> 
+	        <a href="#close" title="Close">Close</a>
+	    </div>
+	</aside>
 
 	<footer class="dark">
 		<i class="fa fa-list-ul pull-left"></i> 
-		<i class="fa fa-plus pull-right"></i>
+		<a href="#example" ><i class="fa fa-plus pull-right"></i></a>
 	</footer>
 
 </body>
