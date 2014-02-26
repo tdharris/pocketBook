@@ -203,7 +203,6 @@ ul { list-style: none; }
 
 
 
-<<<<<<< HEAD
 /* Container */
 .modal {
 
@@ -400,7 +399,7 @@ a.openModal:focus {
     background: -moz-linear-gradient(#fff, #ccc);
     background: -webkit-linear-gradient(#fff, #ccc);
     background: -o-linear-gradient(#fff, #ccc);
-=======
+/*=======
 
 
 
@@ -411,7 +410,7 @@ a.openModal:focus {
 
 
 /********************To Be Merged Later****************************/
-#photo-container{
+/*#photo-container{
 	position: absolute;
 	background: blue;
 	width: 0px;
@@ -443,4 +442,4 @@ input{
 	transition-timing-function: ease-in-out;
 	-webkit-transition-timing-function: ease-in-out;
 >>>>>>> 65cfc3d16fa816f4ef035ffb7bf0d9d0abae5cb6
-}
+}*/
