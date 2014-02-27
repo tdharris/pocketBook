@@ -10,8 +10,8 @@
 	<script tye="text/javascript">
 
 		var newReceipts = { "containers": [
-			{ "month": "",
-				"year": "",
+			{ "month": "01",
+				"year": "2014",
 				"receipts": [
 					{
 						"imgURL": "",
@@ -22,11 +22,11 @@
 						"tags": ['best buy','asia'] 
 					}
 				]},
-			{ "month": "",
-				"year": "",
+			{ "month": "01",
+				"year": "2013",
 				"receipts": [] },
-			{ "month": "",
-				"year": "",
+			{ "month": "02",
+				"year": "2014",
 				"receipts": [] }
 		]};
 
@@ -34,7 +34,26 @@
 		localStorage.setItem("pbReceipts", JSON.stringify(newReceipts)); 
 
 		function getReceipts(){
-			var receipts = JSON.parse(localStorage.getItem("pbreceipts"));
+			var library = JSON.parse(localStorage.getItem("pbReceipts"));
+			for(var i = 0; i < library.containers.length; i++){
+				var view = document.getElementById("library");
+				var monthContainer = document.createElement("li");
+				var monthElement = document.createElement("h2");
+				var monthText = document.createTextNode(library.containers[i].month);
+
+				monthElement.appendChild(monthText)
+				monthContainer.appendChild(monthElement);
+				view.appendChild(monthContainer);
+				var receiptsContainer = document.createElement("ul");
+
+
+
+				for(var j = 0; j < library.containers.receipts){
+
+				}
+					
+
+			}
 		}
 
 
