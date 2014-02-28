@@ -109,7 +109,7 @@ Main Content
 	padding: 10px;
 }
 
-.month {
+#library > li {
 	-webkit-border-bottom-right-radius: 10px;
 	-webkit-border-bottom-left-radius: 10px;
 	-moz-border-radius-bottomright: 10px;
@@ -119,30 +119,25 @@ Main Content
 	border-bottom-left-radius: 10px;
 
 	margin-bottom: 10px;
-	border: 1px solid rgba(0,0,0,0.08);
-	background: rgba(118,119,121,0.2);
+	/* border: 3px rgba(0,0,0,0.08); */
+	background: rgba(118,119,121,0.1);
+	background: white;
 }
 
-.month h2 {
-/*	-webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
--moz-box-shadow:    1px 1px 5px 0px rgba(50, 50, 50, 0.75);
-box-shadow:         1px 1px 5px 0px rgba(50, 50, 50, 0.75);*/
-
-
-	-webkit-box-shadow: 2px 1px 2px 0px rgba(50, 50, 50, 0.75);
--moz-box-shadow:    2px 1px 2px 0px rgba(50, 50, 50, 0.75);
-box-shadow:         2px 1px 2px 0px rgba(50, 50, 50, 0.75);
-
-
-	background-color: #62b040;
-	background-color: #333;
-	padding: 5px;
+#library > li h2 {
+	/* Green */
 	color: #fff;
 	font-weight: normal;
+	background: #5fb336;
+	padding: 7px 15px;
+	color: #fff;
+	text-shadow: 0 1px 1px gray;
+	border: 1.5px solid #559f30;
+	font-family: "Gotham_SSm_4r",Helvetica,Arial,sans-serif;
 }
 
 ul { list-style: none; }
-.receipts .receipt {
+#library > li > ul > li {
 	float: left;
 	width: 100px;
 	height: 200px;
@@ -155,7 +150,7 @@ ul { list-style: none; }
 	display: block;
 	position: relative;	
 }
-.receipts li img {
+#library > li > ul > li img {
 	margin: 5px;
 }
 #tag-overlay {
@@ -168,7 +163,7 @@ ul { list-style: none; }
 	width: 100px; 
 	color: #fff;
 }
-#tag-overlay li {
+#tag-overlay > li {
 	float: left;
 	font-size: 0.7em;
 	background-color: #333;
