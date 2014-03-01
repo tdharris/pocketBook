@@ -8,6 +8,51 @@
 	<link rel="stylesheet" href="css/dropzone.css">
 	<script type="text/javascript" src="js/dropzone.js"></script>
 	<script tye="text/javascript">
+		function findMonth(month){
+			var monthName;
+			switch(month){
+				case 01:
+ 				 monthName = "January";
+  				break;
+				case 02:
+	  		  	 monthName = "Februray";
+  				break;
+  				case 03:
+ 				 monthName = "March";
+  				break;
+				case 04:
+	  		  	 monthName = "April";
+  				break;
+  				case 05:
+ 				 monthName = "May";
+  				break;
+				case 06:
+	  		  	 monthName = "June";
+  				break;
+  				case 07:
+ 				 monthName = "July";
+  				break;
+				case 08:
+	  		  	 monthName = "August";
+  				break;
+  				case 09:
+ 				 monthName = "September";
+  				break;
+				case 10:
+	  		  	 monthName = "October";
+  				break;
+  				case 11:
+ 				 monthName = "November";
+  				break;
+				case 12:
+	  		  	 monthName = "December";
+  				break;
+			}	
+			return monthName;
+		}
+
+
+
 
 		var newReceipts = { "containers": [
 			{ "month": "01",
@@ -38,20 +83,34 @@
 				var view = document.getElementById("library");
 				var monthContainer = document.createElement("li");
 				var monthElement = document.createElement("h2");
-				var monthText = document.createTextNode(library.containers[i].month);
+				var monthName = findMonth(library.containers[i].month)
+				var monthText = document.createTextNode(library.containers[i].month + " " + library.containers[i].year);
 
 				monthElement.appendChild(monthText)
 				monthContainer.appendChild(monthElement);
 				view.appendChild(monthContainer);
 				var receiptsContainer = document.createElement("ul");
 
+<<<<<<< HEAD
 				for(var j = 0; j < library.containers.receipts; j++){
+=======
+
+
+				for(var j = 0; j < library.containers[i].receipts.length){
+>>>>>>> 71bbbd183bd2f620cdb5f804e2c89a77c4e8decb
 
 				}
 					
 			}
 		}
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 71bbbd183bd2f620cdb5f804e2c89a77c4e8decb
 	</script>
 	</head>
 
