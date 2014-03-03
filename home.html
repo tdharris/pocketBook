@@ -52,24 +52,21 @@
 				/* Create the Container Month Name */
 				var monthH2 = document.createElement("h2");
 
-				var monthText = library.containers[i].month + " " + library.containers[i].year;
-				monthH2.innerText = monthText; 
-
-
-					
-
-				monthli.appendChild(monthH2);
-				
-				
-
 				/* Create the Receipt Container */ 
 				var receiptsUL= document.createElement("ul");
+				var monthText = library.containers[i].month + " " + library.containers[i].year;
+
+
+				/* Append the elements */ 
+				monthH2.innerText = monthText; 
+				monthli.appendChild(monthH2);
+				
 				monthli.appendChild(receiptsUL);
 
 				view.appendChild(monthli);
 
 
-				/* This loops Creates the Receipts Objects */
+			 	/* This loops Creates the Receipts Objects */
 				for(var j = 0; j < library.containers[i].receipts.length; j++){
 
 					/* Create the Receipt Object */ 
@@ -77,34 +74,39 @@
 
 					/* Create the Image for the Receipt */ 
 					var image = document.createElement("img");
+
 					var url = library.containers[i].receipts[j].imgURL;
-					image.src = "/" + url;
-
-					/* Append the iamge to the Reciept Object */ 
-					receiptLI.appendChild(image);
-
+					// image.src = "/" + url;
 
 					/* Create the Tags Container */ 
-					var tagsContainer = document.createElement("ul");
-					tagsContainer.className = "tag-overlay";
+					var tags = document.createElement("ul");
+
+
+					/* Append the iamge to the Reciept Object */ 
+					receiptsUL.appendChild(receiptLI);
+					receiptLI.appendChild(image);
+					receiptLI.appendChild(tags);
+
+
+
+					
+					tags.className = "tag-overlay";
 
 					/* This loop creates the tags objects */
-					for(var k = 0; library.containers[i].receipts[j].tags.length; k++){
+					for(var k = 0; k < library.containers[i].receipts[j].tags.length; k++){
 
 						/* Create the Tag */ 
-						var tag = document.createElement("li");
-						var tagText = document.createTextNode(library.containers[i].receipts[j].tags[k]);
+						var tagLI = document.createElement("li");
+
+						var tagText = library.containers[i].receipts[j].tags[k];
+
+						tagLI.innerHTML = tagText;
 
 						/* Append the Tag to the Containter */ 
-						tag.appendChild(tagText);
-						tagsContainer.appendChild(tag);
+						tags.appendChild(tagLI);
 
 					}
 
-
-					/*Append the tags to the Receipt Object */ 
-					receiptLI.appendChild(tagsContainer);
-					receiptsUL.appendChild(receiptsContainer);
 			
 			}
 		}
