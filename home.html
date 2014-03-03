@@ -47,22 +47,33 @@
 				var view = document.getElementById("library");
 
 				/* Create the Month Container */
-				var monthContainer = document.createElement("li");
+				var monthli = document.createElement("li");
 
 				/* Create the Container Month Name */
 				var monthH2 = document.createElement("h2");
-				var monthText = document.createTextNode(library.containers[i].month + " " + library.containers[i].year);
-				monthH2.appendChild(monthText)
+
+				var monthText = library.containers[i].month + " " + library.containers[i].year;
+				monthH2.innerText = monthText; 
+
+
+					
+
+				monthli.appendChild(monthH2);
+				
+				
 
 				/* Create the Receipt Container */ 
-				var receiptsContainer = document.createElement("ul");
+				var receiptsUL= document.createElement("ul");
+				monthli.appendChild(receiptsUL);
+
+				view.appendChild(monthli);
 
 
 				/* This loops Creates the Receipts Objects */
 				for(var j = 0; j < library.containers[i].receipts.length; j++){
 
 					/* Create the Receipt Object */ 
-					var receiptContainer = document.createElement("li");
+					var receiptLI = document.createElement("li");
 
 					/* Create the Image for the Receipt */ 
 					var image = document.createElement("img");
@@ -70,7 +81,7 @@
 					image.src = "/" + url;
 
 					/* Append the iamge to the Reciept Object */ 
-					receiptContainer.appendChild(image);
+					receiptLI.appendChild(image);
 
 
 					/* Create the Tags Container */ 
@@ -92,14 +103,9 @@
 
 
 					/*Append the tags to the Receipt Object */ 
-					receiptContainer.appendChild(tagsContainer);
-					receiptsContainer.appendChild(receiptsContainer);
-
-				
-				monthContainer.appendChild(monthH2);
-				monthContainer.appendChild(receiptsContainer);
-				view.appendChild(monthContainer);
-					
+					receiptLI.appendChild(tagsContainer);
+					receiptsUL.appendChild(receiptsContainer);
+			
 			}
 		}
 	}
