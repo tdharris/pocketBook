@@ -57,6 +57,7 @@
 				/* Create the Receipt Container */ 
 				var receiptsContainer = document.createElement("ul");
 
+
 				/* This loops Creates the Receipts Objects */
 				for(var j = 0; j < library.containers[i].receipts.length; j++){
 
@@ -94,19 +95,13 @@
 					receiptContainer.appendChild(tagsContainer);
 					receiptsContainer.appendChild(receiptsContainer);
 
-				}
 				
 				monthContainer.appendChild(monthH2);
 				monthContainer.appendChild(receiptsContainer);
 				view.appendChild(monthContainer);
 					
-
 			}
 		}
-
-
-
-
 
 	</script>
 	</head>
@@ -124,7 +119,7 @@
 
 		<ul id="library" class="flexcontainer">
 			<li>
-				<h2>month</h2>
+				<h2>January 2013</h2>
 				<ul>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
