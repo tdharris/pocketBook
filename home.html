@@ -8,58 +8,14 @@
 	<link rel="stylesheet" href="css/dropzone.css">
 	<script type="text/javascript" src="js/dropzone.js"></script>
 	<script tye="text/javascript">
-		function findMonth(month){
-			var monthName;
-			switch(month){
-				case 01:
- 				 monthName = "January";
-  				break;
-				case 02:
-	  		  	 monthName = "Februray";
-  				break;
-  				case 03:
- 				 monthName = "March";
-  				break;
-				case 04:
-	  		  	 monthName = "April";
-  				break;
-  				case 05:
- 				 monthName = "May";
-  				break;
-				case 06:
-	  		  	 monthName = "June";
-  				break;
-  				case 07:
- 				 monthName = "July";
-  				break;
-				case 08:
-	  		  	 monthName = "August";
-  				break;
-  				case 09:
- 				 monthName = "September";
-  				break;
-				case 10:
-	  		  	 monthName = "October";
-  				break;
-  				case 11:
- 				 monthName = "November";
-  				break;
-				case 12:
-	  		  	 monthName = "December";
-  				break;
-			}	
-			return monthName;
-		}
 
-
-
-
+		/* Create the JSON Object */
 		var newReceipts = { "containers": [
 			{ "month": "01",
 				"year": "2014",
 				"receipts": [
 					{
-						"imgURL": "",
+						"imgURL": "Hi",
 						"tags": ['best buy','asia'] 
 					},
 					{
@@ -75,28 +31,74 @@
 				"receipts": [] }
 		]};
 
-
+		/* Put the JSON object into local storage */
 		localStorage.setItem("pbReceipts", JSON.stringify(newReceipts)); 
 
+		/* This function gets the receipts and populates the view */ 
 		function getReceipts(){
+			
+			/* Get the JSON Object from Local Stoarage */
 			var library = JSON.parse(localStorage.getItem("pbReceipts"));
-			for(var i = 0; i < library.containers.length; i++){
-				var view = document.getElementById("library");
-				var monthContainer = document.createElement("li");
-				var monthElement = document.createElement("h2");
-				var monthName = findMonth(library.containers[i].month)
-				var monthText = document.createTextNode(library.containers[i].month + " " + library.containers[i].year);
 
-				monthElement.appendChild(monthText)
-				monthContainer.appendChild(monthElement);
-				view.appendChild(monthContainer);
+			/* This loop creates the month and Receipts containers */
+			for(var i = 0; i < library.containers.length; i++){
+
+				/* Get the Reciept Library */
+				var view = document.getElementById("library");
+
+				/* Create the Month Container */
+				var monthContainer = document.createElement("li");
+
+				/* Create the Container Month Name */
+				var monthH2 = document.createElement("h2");
+				var monthText = document.createTextNode(library.containers[i].month + " " + library.containers[i].year);
+				monthH2.appendChild(monthText)
+
+				/* Create the Receipt Container */ 
 				var receiptsContainer = document.createElement("ul");
 
+				/* This loops Creates the Receipts Objects */
+				for(var j = 0; j < library.containers[i].receipts.length; j++){
+
+					/* Create the Receipt Object */ 
+					var receiptContainer = document.createElement("li");
+
+					/* Create the Image for the Receipt */ 
+					var image = document.createElement("img");
+					var url = library.containers[i].receipts[j].imgURL;
+					image.src = "/" + url;
+
+					/* Append the iamge to the Reciept Object */ 
+					receiptContainer.appendChild(image);
 
 
-				for(var j = 0; j < library.containers[i].receipts.length){
+					/* Create the Tags Container */ 
+					var tagsContainer = document.createElement("ul");
+					tagsContainer.className = "tag-overlay";
+
+					/* This loop creates the tags objects */
+					for(var k = 0; library.containers[i].receipts[j].tags.length; k++){
+
+						/* Create the Tag */ 
+						var tag = document.createElement("li");
+						var tagText = document.createTextNode(library.containers[i].receipts[j].tags[k]);
+
+						/* Append the Tag to the Containter */ 
+						tag.appendChild(tagText);
+						tagsContainer.appendChild(tag);
+
+					}
+
+
+					/*Append the tags to the Receipt Object */ 
+					receiptContainer.appendChild(tagsContainer);
+					receiptsContainer.appendChild(receiptsContainer);
 
 				}
+				
+				monthContainer.appendChild(monthH2);
+				monthContainer.appendChild(receiptsContainer);
+				view.appendChild(monthContainer);
 					
 
 			}
@@ -126,14 +128,14 @@
 				<ul>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japan</li>
 							<li>beenthere</li>
@@ -142,28 +144,28 @@
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
@@ -175,14 +177,14 @@
 				<ul>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japan</li>
 							<li>beenthere</li>
@@ -191,28 +193,28 @@
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
 					</li>
 					<li>
 						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul id="tag-overlay">
+						<ul class="tag-overlay">
 							<li>bestbuy</li>
 							<li>japantrip</li>
 						</ul>
