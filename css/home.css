@@ -117,6 +117,13 @@ i { font-size: 1.2em; padding: 0 10px; }
 #library{
 	margin: 15px auto;
 	padding: 10px;
+	max-width: 900px;
+}
+
+@media screen,handheld {
+	#library {
+		max-width: 80%;
+	}
 }
 
 #library > li {
@@ -124,15 +131,15 @@ i { font-size: 1.2em; padding: 0 10px; }
 	-webkit-border-bottom-left-radius: 10px;
 	-moz-border-radius-bottomright: 10px;
 	-moz-border-radius-bottomleft: 10px;
-	margin: 0 10px;
+	margin-top: 10px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 
-	margin-bottom: 10px;
 	/* border: 3px rgba(0,0,0,0.08); */
 	background: rgba(118,119,121,0.1);
 	background: white;
 	border: 2px solid rgba(151, 151, 151, 0.25);
+	width: 100%;
 }
 
 #library > li h2 {
@@ -153,7 +160,7 @@ ul { list-style: none; }
 	width: 100px;
 	height: 200px;
 	margin: 10px;
-	padding: 5px;
+	padding: 2px;
 	background: #fff;
 	border: 1px solid rgba(0,0,0,0.16);
 	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
@@ -164,8 +171,28 @@ ul { list-style: none; }
 #library > li > ul > li img {
 	margin: 5px;
 }
+#library > li > ul {
+	display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: space-around;
+   justify-content: space-around;
+   /* You can set flex-wrap and flex-direction individually */
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-flex-wrap: wrap;
+   flex-wrap: wrap;
+   /* Or do it all in one line with flex flow */
+   -webkit-flex-flow: row wrap;
+   flex-flow: row wrap;
+   /* tweak the where items line up on the row */
+   /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+   -webkit-align-content: flex-end;
+   align-content: flex-end;
+}
 .tag-overlay {
-	padding: 5px;
+	padding: 2px;
 	height: auto;
 	background-color: rgba(0,0,0,0.5);
 	position: absolute;
