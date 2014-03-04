@@ -6,113 +6,25 @@
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/home.css">
 	<link rel="stylesheet" href="css/dropzone.css">
+	<script type="text/javascript" src="js/getReceipts.js"></script>
+	<script type="text/javascript" src="js/createReceiptsJSON.js"></script>
+	<script type="text/javascript" src="js/utility.js"></script>
 	<script type="text/javascript" src="js/dropzone.js"></script>
 	<script tye="text/javascript">
 
-		/* Create the JSON Object */
-		var newReceipts = { "containers": [
-			{ "month": "01",
-				"year": "2014",
-				"receipts": [
-					{
-						"imgURL": "Hi",
-						"tags": ['best buy','asia'] 
-					},
-					{
-						"imgURL": "",
-						"tags": ['best buy','asia'] 
-					}
-				]},
-			{ "month": "01",
-				"year": "2013",
-				"receipts": [] },
-			{ "month": "02",
-				"year": "2014",
-				"receipts": [] }
-		]};
+	// When document is ready (newer browsers)
+	document.addEventListener('DOMContentLoaded',function(){
 
-		/* Put the JSON object into local storage */
-		localStorage.setItem("pbReceipts", JSON.stringify(newReceipts)); 
+		addClass("library", "loading-overlay");
 
-		/* This function gets the receipts and populates the view */ 
-		function getReceipts(){
-			
-			/* Get the JSON Object from Local Stoarage */
-			var library = JSON.parse(localStorage.getItem("pbReceipts"));
+		getReceipts();
+		// var myWorker = new Worker("js/getReceipts.js");
+		// worker.postMessage();
 
-			/* This loop creates the month and Receipts containers */
-			for(var i = 0; i < library.containers.length; i++){
-
-				/* Get the Reciept Library */
-				var view = document.getElementById("library");
-
-				/* Create the Month Container */
-				var monthli = document.createElement("li");
-
-				/* Create the Container Month Name */
-				var monthH2 = document.createElement("h2");
-
-				/* Create the Receipt Container */ 
-				var receiptsUL= document.createElement("ul");
-				var monthText = library.containers[i].month + " " + library.containers[i].year;
-
-
-				/* Append the elements */ 
-				monthH2.innerText = monthText; 
-				monthli.appendChild(monthH2);
-				
-				monthli.appendChild(receiptsUL);
-
-				view.appendChild(monthli);
-
-
-			 	/* This loops Creates the Receipts Objects */
-				for(var j = 0; j < library.containers[i].receipts.length; j++){
-
-					/* Create the Receipt Object */ 
-					var receiptLI = document.createElement("li");
-
-					/* Create the Image for the Receipt */ 
-					var image = document.createElement("img");
-
-					var url = library.containers[i].receipts[j].imgURL;
-					// image.src = "/" + url;
-
-					/* Create the Tags Container */ 
-					var tags = document.createElement("ul");
-
-
-					/* Append the iamge to the Reciept Object */ 
-					receiptsUL.appendChild(receiptLI);
-					receiptLI.appendChild(image);
-					receiptLI.appendChild(tags);
-
-
-
-					
-					tags.className = "tag-overlay";
-
-					/* This loop creates the tags objects */
-					for(var k = 0; k < library.containers[i].receipts[j].tags.length; k++){
-
-						/* Create the Tag */ 
-						var tagLI = document.createElement("li");
-
-						var tagText = library.containers[i].receipts[j].tags[k];
-
-						tagLI.innerHTML = tagText;
-
-						/* Append the Tag to the Containter */ 
-						tags.appendChild(tagLI);
-
-					}
-
-			
-			}
-		}
-	}
-
-	getReceipts();
+		removeClass("library", "loading-overlay");
+		
+	});
+	
 	</script>
 	</head>
 
@@ -127,105 +39,8 @@
 		</aside>
 	<main>
 
-		<ul id="library" class="flexcontainer">
-			<li>
-				<h2>January 2013</h2>
-				<ul>
-					<li>
-						<img src="http://www.w3.org/wiki/images/a/a9/Munich-dinner-receipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://www-images.theonering.org/torwp/wp-content/uploads/2012/09/receipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japan</li>
-							<li>beenthere</li>
-							<li>donethat</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://1.bp.blogspot.com/_kGWKs3VaCU4/TNh1WqhlHBI/AAAAAAAAAZI/_Itvx0Mhh3Q/s1600/receipt.jpeg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<h2>April 2013</h2>
-				<ul>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japan</li>
-							<li>beenthere</li>
-							<li>donethat</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-					<li>
-						<img src="http://3.bp.blogspot.com/-Jm4_lutlolc/TVxNxcy_iOI/AAAAAAAABYU/fTOrZUskKpI/s1600/MLS%2B2%253A16%2B-%2BCVS%2BReceipt.jpg" style="height:180px;width:90px">
-						<ul class="tag-overlay">
-							<li>bestbuy</li>
-							<li>japantrip</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
+		<ul id="library" class="flexcontainer loading-overlay">
+			<!-- <li><img><ul class="tag-overlay"><li>best buy</li><li>asia</li></ul></li> -->
 		</ul>
 	</main>
 
