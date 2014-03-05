@@ -37,21 +37,41 @@ function resizeImage(input, callback) {
 }
 
 function addReceipt() {
-	// Grab input field/img from form
-
+	// Grab input field/img from form & create newReceipt object
+	newTags = ['best buy', 'silly'];
+	newReceiptYear = '2013';
+	newReceiptMonth = '01';
 
 	resizeImage(input, function(dataurl) {
-		// Fetch receipts from storage
-		var receipts = JSON.parse(localStorage.getItem("pbReceipts"));
+		
+		var newReceipt;
+		newReceipt.imgURL = dataurl;
+		newReceipt.tags = [];
 
-		// Add receipt to receipts
-			// JSON object structure:
+		// Fetch receipts from storage
+		var library = JSON.parse(localStorage.getItem("pbReceipts"));
+
+		// Add receipt to library
+			// JSON object structure "library":
 			// containers: grouped by month/year
 			// month: month, year, array of receipts
 			// receipts: imgURL, array of tags
 
 		// Does the current month/year exist in the store?
-		
+		for(var i = 0; i < library.containers.length; i++){
+
+			// month/year container already exists for newReceipt
+			if (library.containers[i].month == newReceiptMonth && library.containers[i].year == newReceiptYear) {
+				// append receipt to library.containers[i].receipts
+			} 
+			// month/year container must be created
+			else {
+
+			}
+
+			library.containers[i].month;
+			library.containers[i].year;
+		}
 
 		// Save to storage
 		localStorage.setItem("pbReceipts", JSON.stringify(receipts)); 

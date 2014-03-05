@@ -117,14 +117,15 @@ i { font-size: 1.2em; padding: 0 10px; }
 #library{
 	margin: 15px auto;
 	padding: 10px;
-	max-width: 900px;
-	min-height: 500px;
+	/*max-width: 900px;
+	min-height: 500px;*/
+	max-width: 80%;
+	min-width: 40%;
 }
 
 @media screen,handheld {
 	#library {
-		max-width: 80%;
-		min-width: 40%;
+		
 	}
 }
 
