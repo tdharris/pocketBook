@@ -1,6 +1,6 @@
-function resizeImage(input, callback) {
-	// from an input element
-	var filesToUpload = input.files;
+function resizeImage(newReceipt, callback) {
+	// from an input elements
+	var filesToUpload = newReceipt.input.files;
 	var file = filesToUpload[0];
 
 	var img = document.createElement("img");
@@ -32,49 +32,57 @@ function resizeImage(input, callback) {
 	var ctx = canvas.getContext("2d");
 	ctx.drawImage(img, 0, 0, width, height);
 
-	var dataurl = canvas.toDataURL("image/png");
-	callback(dataurl);
+	newReceipt.dataURL = canvas.toDataURL("image/png");
+	delete newReceipt.input;
+	callback(newReceipt);
 }
 
-function addReceipt() {
+function addReceipt(newReceipt) {
 	// Grab input field/img from form & create newReceipt object
-	newTags = ['best buy', 'silly'];
-	newReceiptYear = '2013';
-	newReceiptMonth = '01';
+	// newReceipt.input .year .month .tags
+	newReceipt.date = new Date();
+	newReceipt.tags = ['best buy'];
 
-	resizeImage(input, function(dataurl) {
-		
-		var newReceipt;
-		newReceipt.imgURL = dataurl;
-		newReceipt.tags = [];
-
+	resizeImage(newReceipt, function(newReceipt) {
 		// Fetch receipts from storage
 		var library = JSON.parse(localStorage.getItem("pbReceipts"));
 
 		// Add receipt to library
-			// JSON object structure "library":
-			// containers: grouped by month/year
-			// month: month, year, array of receipts
-			// receipts: imgURL, array of tags
+		// JSON object structure "library":
+		// containers > months > receipts
+		// containers: grouped by month/year
+		// month: month, year, array of receipts
+		// receipts: dataURL, array of tags
 
-		// Does the current month/year exist in the store?
-		for(var i = 0; i < library.containers.length; i++){
-
-			// month/year container already exists for newReceipt
-			if (library.containers[i].month == newReceiptMonth && library.containers[i].year == newReceiptYear) {
-				// append receipt to library.containers[i].receipts
-			} 
-			// month/year container must be created
-			else {
-
+		try {
+			// Does the current month/year exist in the store?
+			for(var i = 0; i < library.containers.length; i++){
+				// month/year container already exists for newReceipt
+				if (library.containers[i].date.getMonth() == newReceipt.date.getMonth() && library.containers[i].date.getFullYear() == newReceipt.date.getFullYear()) {
+					// append receipt to library.containers[i].receipts
+					library.containers[i].receipts.push({
+						"date": JSON.stringify(newReceipt.date),
+						"dataURL": newReceipt.dataURL,
+						"tags": newReceipt.tags;
+					});
+				} else {
+					// month/year container must be created
+					library.containers[i].push({
+						"date": JSON.stringify(newReceipt.date),
+						"receipts": [{
+							"dataURL": newReceipt.dataURL,
+							"tags": newReceipt.tags;
+						}];
+					})
+				}
 			}
-
-			library.containers[i].month;
-			library.containers[i].year;
 		}
 
-		// Save to storage
-		localStorage.setItem("pbReceipts", JSON.stringify(receipts)); 
+		finally {
+			// Save to storage
+			localStorage.setItem("pbReceipts", JSON.stringify(receipts));
+		}
+		 
 	});
 
 }
