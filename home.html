@@ -5,11 +5,12 @@
 	<title>myLibrary</title>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/home.css">
-	<link rel="stylesheet" href="css/dropzone.css">
+	<!-- <link rel="stylesheet" href="css/dropzone.css"> -->
+	<script type="text/javascript" src="js/addReceipt.js"></script>
 	<script type="text/javascript" src="js/getReceipts.js"></script>
 	<script type="text/javascript" src="js/createReceiptsJSON.js"></script>
 	<script type="text/javascript" src="js/utility.js"></script>
-	<script type="text/javascript" src="js/dropzone.js"></script>
+
 	<script tye="text/javascript">
 
 	// When document is ready (newer browsers)
@@ -22,7 +23,7 @@
 		// worker.postMessage();
 
 		removeClass("library", "loading-overlay");
-		
+
 	});
 	
 	</script>
@@ -46,12 +47,19 @@
 
 	<aside id="example" class="modal">
 	    <div>
-			<div action="#" class="dropzone dz-clickable">
-				<div class="dz-default dz-message">
+			<div id="snap" action="#" class="dropzone flexcontainer-center">
+				<input type="file" id="hiddensnap" accept="image/*;capture=camera" style="display:none;" > 
+				<!-- <button id="snap">
+				 Take A Photo Click here and use the camera
+				</button> -->
+				<div id="clickMe" class="flexcontainer-center">
 					<i class="fa fa-camera opacity"></i>
-				<h4 class="opacity">Select Image</h4>
+					<h4 class="opacity">Select Image</h4>
 				</div>
+				<img src="" id="showMe">
+				
 			</div> 
+			<button>Submit</button>
 	        <a href="#close" title="Close">Close</a>
 	    </div>
 	</aside>

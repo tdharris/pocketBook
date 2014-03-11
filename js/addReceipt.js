@@ -1,40 +1,65 @@
-function resizeImage(newReceipt, callback) {
-	// from an input elements
-	var filesToUpload = newReceipt.input.files;
-	var file = filesToUpload[0];
+document.addEventListener('DOMContentLoaded',function(){
+	var snap = document.getElementById("snap");
+	var hiddensnap = document.getElementById("hiddensnap"); 
+	snap.onclick=function(e){ 
+		hiddensnap.click(); 
+	};
+	hiddensnap.onchange=function(e){ 
+		var file=e.target.files[0];
+		previewImage(file);
+	};
+});
 
-	var img = document.createElement("img");
-	var reader = new FileReader();  
-	reader.onload = function(e) {img.src = e.target.result}
-	reader.readAsDataURL(file);
+function previewImage(file) {
+	var URL=window.URL|| window.webkitURL; 
+	var fileURL=URL.createObjectURL(file); 
+	var img=document.getElementById("showMe"); 
+	document.getElementById('clickMe').style.display = 'none';
+	img.src=fileURL; 
+	document.getElementById('showMe').style.display = 'block';
+	URL.revokeObjectURL(fileURL); 
+};
 
-	var ctx = canvas.getContext("2d");
-	ctx.drawImage(img, 0, 0);
+function resizeImage(file, callback) {
+	var img=new Image();
+	img.src=fileURL; 
+	var canvas=document.getElementById('myCanvas'); 
+	var context = canvas.getContext('2d'); img.onload = function() { 
+	   context.drawImage(img, 100, 100); 
+	};
+	// var img = document.createElement("img");
+	// var reader = new FileReader();  
+	// reader.onload = function(e) {img.src = e.target.result}
+	// reader.readAsDataURL(file);
+	// console.log("reader read dataurl");
 
-	var MAX_WIDTH = 800;
-	var MAX_HEIGHT = 600;
-	var width = img.width;
-	var height = img.height;
+	// var canvas = document.createElement('canvas');
+	// var ctx = canvas.getContext("2d");
+	// ctx.drawImage(img, 0, 0);
 
-	if (width > height) {
-	  if (width > MAX_WIDTH) {
-	    height *= MAX_WIDTH / width;
-	    width = MAX_WIDTH;
-	  }
-	} else {
-	  if (height > MAX_HEIGHT) {
-	    width *= MAX_HEIGHT / height;
-	    height = MAX_HEIGHT;
-	  }
-	}
-	canvas.width = width;
-	canvas.height = height;
-	var ctx = canvas.getContext("2d");
-	ctx.drawImage(img, 0, 0, width, height);
+	// var MAX_WIDTH = 800;
+	// var MAX_HEIGHT = 600;
+	// var width = img.width;
+	// var height = img.height;
 
-	newReceipt.dataURL = canvas.toDataURL("image/png");
-	delete newReceipt.input;
-	callback(newReceipt);
+	// if (width > height) {
+	//   if (width > MAX_WIDTH) {
+	//     height *= MAX_WIDTH / width;
+	//     width = MAX_WIDTH;
+	//   }
+	// } else {
+	//   if (height > MAX_HEIGHT) {
+	//     width *= MAX_HEIGHT / height;
+	//     height = MAX_HEIGHT;
+	//   }
+	// }
+	// canvas.width = width;
+	// canvas.height = height;
+	// var ctx = canvas.getContext("2d");
+	// ctx.drawImage(img, 0, 0, width, height);
+
+	var dataURL = canvas.toDataURL("image/png");
+	callback(dataURL);
 }
 
 function addReceipt(newReceipt) {
@@ -61,7 +86,7 @@ function addReceipt(newReceipt) {
 					// append receipt to library.containers[i].receipts
 					library.containers[i].receipts.push({
 						"dataURL": newReceipt.dataURL,
-						"tags": newReceipt.tags;
+						"tags": newReceipt.tags
 					});
 				} else {
 					// month/year container must be created
@@ -69,8 +94,8 @@ function addReceipt(newReceipt) {
 						"date": JSON.stringify(newReceipt.date),
 						"receipts": [{
 							"dataURL": newReceipt.dataURL,
-							"tags": newReceipt.tags;
-						}];
+							"tags": newReceipt.tags
+						}]
 					})
 				}
 			}

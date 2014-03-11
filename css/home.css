@@ -240,6 +240,37 @@ ul { list-style: none; }
    align-content: flex-start;
 }
 
+.flexcontainer-center {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row /* works with row or column */
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+}
+
+.dropzone {
+  cursor: pointer;
+  min-height: 250px;
+  padding: 23px;
+  /*border: 3px dashed rgba(0,0,0,0.08);*/
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(0,0,0,0.02);
+}
+
+#showMe {
+  display: none;
+  height: 150px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid #acacac;
+  padding: 6px;
+}
+
+#clickMe {
+  cursor: pointer;
+}
 /* Loading CSS Spinner */
   @-moz-keyframes spin {
     from {
