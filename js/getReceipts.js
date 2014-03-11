@@ -14,7 +14,7 @@ function getReceipts(){
 	/* This loop creates the month and Receipts containers */
 	for(var i = 0; i < library.containers.length; i++){
 		var containerDate = new Date(JSON.parse(library.containers[i].date));
-		
+
 		/* Create the Month Container */
 		var monthli = document.createElement("li");
 
@@ -23,7 +23,7 @@ function getReceipts(){
 
 		/* Create the Receipt Container */ 
 		var receiptsUL= document.createElement("ul");
-		var monthText = containerDate.getMonth() + " " + containerDate.getFullYear();
+		var monthText = containerDate.getMonthName() + " " + containerDate.getFullYear();
 
 
 		/* Append the elements */ 
