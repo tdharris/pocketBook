@@ -4,12 +4,17 @@ function getReceipts(){
 	/* Get the JSON Object from Local Stoarage */
 	var library = JSON.parse(localStorage.getItem("pbReceipts"));
 
+	if (typeof variable_here === 'undefined') {
+
+	};
+
 	/* Get the Reciept Library */
 	var view = document.getElementById("library");
 
 	/* This loop creates the month and Receipts containers */
 	for(var i = 0; i < library.containers.length; i++){
-
+		var containerDate = new Date(JSON.parse(library.containers[i].date));
+		
 		/* Create the Month Container */
 		var monthli = document.createElement("li");
 
@@ -18,7 +23,7 @@ function getReceipts(){
 
 		/* Create the Receipt Container */ 
 		var receiptsUL= document.createElement("ul");
-		var monthText = library.containers[i].month + " " + library.containers[i].year;
+		var monthText = containerDate.getMonth() + " " + containerDate.getFullYear();
 
 
 		/* Append the elements */ 
@@ -41,7 +46,7 @@ function getReceipts(){
 			image.style.height = "180px";
 			image.style.width = "90px"
 
-			var url = library.containers[i].receipts[j].imgURL;
+			var url = library.containers[i].receipts[j].dataUrl;
 			image.src = url;
 
 			/* Create the Tags Container */ 
