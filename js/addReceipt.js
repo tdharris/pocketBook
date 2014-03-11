@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded',function(){
 	var snap = document.getElementById("snap");
-	var hiddensnap = document.getElementById("hiddensnap"); 
+	var hiddensnap = document.getElementById("hiddensnap");
+	var newReceipt = document.getElementById("newReceipt"); 
 	snap.onclick=function(e){ 
 		hiddensnap.click(); 
 	};
@@ -8,39 +9,41 @@ document.addEventListener('DOMContentLoaded',function(){
 		var file=e.target.files[0];
 		previewImage(file);
 	};
+	newReceipt.onclick=function(e){
+		file = document.getElementById('hiddensnap').files[0];
+		resizeImage(file, function(dataurl) {
+			console.log('finished resizing: ' + dataurl);
+		});
+	}
 });
 
 function previewImage(file) {
-	var URL=window.URL|| window.webkitURL; 
-	var fileURL=URL.createObjectURL(file); 
-	var img=document.getElementById("showMe"); 
+	document.getElementById("showMeImg").src = window.URL.createObjectURL(file); 
 	document.getElementById('clickMe').style.display = 'none';
-	img.src=fileURL; 
 	document.getElementById('showMe').style.display = 'block';
-	URL.revokeObjectURL(fileURL); 
 };
 
-function resizeImage(file, callback) {
-	var img=new Image();
-	img.src=fileURL; 
-	var canvas=document.getElementById('myCanvas'); 
-	var context = canvas.getContext('2d'); img.onload = function() { 
-	   context.drawImage(img, 100, 100); 
-	};
-	// var img = document.createElement("img");
-	// var reader = new FileReader();  
-	// reader.onload = function(e) {img.src = e.target.result}
-	// reader.readAsDataURL(file);
-	// console.log("reader read dataurl");
+// function removeImage() {
+// 	document.getElementById('hiddensnap').value = "";
+// 	document.getElementById('showMe').style.display = 'none';
+// 	document.getElementById('clickMe').style.display = 'block';
+// };
 
-	// var canvas = document.createElement('canvas');
-	// var ctx = canvas.getContext("2d");
-	// ctx.drawImage(img, 0, 0);
+function resizeImage(file, callback) {
+	var img = document.createElement("img");
+	var reader = new FileReader();  
+	reader.onload = function(e) {img.src = e.target.result}
+	reader.readAsDataURL(file);
+
+	var canvas = document.createElement('canvas');
+	document.body.appendChild(canvas);
+	var ctx = canvas.getContext("2d");
+	ctx.drawImage(img, 0, 0);
 
 	// var MAX_WIDTH = 800;
 	// var MAX_HEIGHT = 600;
-	// var width = img.width;
-	// var height = img.height;
+	var width = img.width;
+	var height = img.height;
 
 	// if (width > height) {
 	//   if (width > MAX_WIDTH) {
@@ -55,11 +58,11 @@ function resizeImage(file, callback) {
 	// }
 	// canvas.width = width;
 	// canvas.height = height;
-	// var ctx = canvas.getContext("2d");
-	// ctx.drawImage(img, 0, 0, width, height);
-
-	var dataURL = canvas.toDataURL("image/png");
-	callback(dataURL);
+	var ctx = canvas.getContext("2d");
+	ctx.drawImage(img, 0, 0, width, height);
+	var dataurl = canvas.toDataURL("image/png");
+	
+	callback(dataurl);
 }
 
 function addReceipt(newReceipt) {

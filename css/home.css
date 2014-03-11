@@ -243,8 +243,8 @@ ul { list-style: none; }
 .flexcontainer-center {
    display: -webkit-flex;
    display: flex;
-   -webkit-flex-direction: row /* works with row or column */
-   flex-direction: row;
+   -webkit-flex-direction: column;
+   flex-direction: column;
    -webkit-align-items: center;
    align-items: center;
    -webkit-justify-content: center;
@@ -262,14 +262,45 @@ ul { list-style: none; }
 
 #showMe {
   display: none;
+  text-align: center;
+}
+#clickMe i {
+  font-size: 4.5em;
+}
+#showMeImg {
   height: 150px;
+  max-width: 250px;
   background: rgba(255,255,255,0.8);
   border: 1px solid #acacac;
   padding: 6px;
 }
 
+.closeMe {
+  content: 'X';
+  display: block;
+
+  /* Position */
+  position: relative;
+  right: -10px;
+  top: -10px;
+  width: 1.5em;
+  padding: 1px 1px 1px 2px;
+
+  /* Style */
+  text-decoration: none;
+  text-shadow: none;
+  text-align: center;
+  font-weight: bold;
+  background: #000;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
 #clickMe {
   cursor: pointer;
+  opacity: 0.5;
 }
 /* Loading CSS Spinner */
   @-moz-keyframes spin {
@@ -521,9 +552,9 @@ ul { list-style: none; }
     text-shadow: none;
     text-align: center;
     font-weight: bold;
-    background: #000;
+    background-color: #333;
     color: #fff;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
     border-radius: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
