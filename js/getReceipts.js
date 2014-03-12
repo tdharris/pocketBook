@@ -1,6 +1,8 @@
 /* This function gets the receipts and populates the view */ 
 function getReceipts(){
 	
+	addClass("library", "loading-overlay");
+
 	/* Get the JSON Object from Local Stoarage */
 	var theLibrary = JSON.parse(localStorage.getItem("pbReceipts"));
 
@@ -76,6 +78,8 @@ function getReceipts(){
 			}
 		}
 	}
+
+	removeClass("library", "loading-overlay");
 }
 
 self.addEventListener('message', function(e) {
