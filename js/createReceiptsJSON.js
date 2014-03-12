@@ -10,23 +10,23 @@ var newReceipts = { "containers": [
 			{
 				"dataUrl": daimg,
 				"tags": ['best buy','asia'] 
-			},
-			{
-				"dataUrl": daimg,
-				"tags": ['best buy','asia'] 
-			},
-			{
-				"dataUrl": daimg,
-				"tags": ['best buy','asia'] 
-			},
-			{
-				"dataUrl": daimg,
-				"tags": ['best buy','asia'] 
-			},
-			{
-				"dataUrl": daimg,
-				"tags": ['best buy','asia'] 
 			}
+			// {
+			// 	"dataUrl": daimg,
+			// 	"tags": ['best buy','asia'] 
+			// },
+			// {
+			// 	"dataUrl": daimg,
+			// 	"tags": ['best buy','asia'] 
+			// },
+			// {
+			// 	"dataUrl": daimg,
+			// 	"tags": ['best buy','asia'] 
+			// },
+			// {
+			// 	"dataUrl": daimg,
+			// 	"tags": ['best buy','asia'] 
+			// }
 	]}
 ]};
 
