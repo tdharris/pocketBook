@@ -268,8 +268,8 @@ ul { list-style: none; }
   font-size: 4.5em;
 }
 #showMeImg {
-  height: 150px;
-  max-width: 250px;
+  max-height: 200px;
+  max-width: 200px;
   background: rgba(255,255,255,0.8);
   border: 1px solid #acacac;
   padding: 6px;

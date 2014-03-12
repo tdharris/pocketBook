@@ -42,8 +42,8 @@ function render(file, done) {
 		var dataUrl = e.target.result,
 			img = document.createElement('img'),
 			canvas = document.createElement('canvas'),
-			MAX_WIDTH = 800,
-			MAX_HEIGHT = 600;
+			MAX_WIDTH = 250,
+			MAX_HEIGHT = 450;
 		
 		// wait for image to load before checking width/height etc.
 		img.onload = function() {
