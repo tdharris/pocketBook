@@ -84,26 +84,34 @@ function addReceipt(newReceipt) {
 			// receipts: dataUrl, array of tags
 
 		try {
-			// Fetch receipts from storage
-			var theLibrary = JSON.parse(localStorage.getItem("pbReceipts"));
+			var containerExists = false;
+			var theLibrary = localStorage.getItem("pbReceipts");
 
-			// Does the current month/year exist in the store?
-			for(var i = 0; i < theLibrary.containers.length; i++){
-				var containerExists = false;
-				var containerDate = new Date(theLibrary.containers[i].date);
-				// console.log("container "+ theLibrary.containers[i] + ": " + containerDate.getMonth() + " " + containerDate.getFullYear());
-				if (containerDate.getMonth() == newReceipt.date.getMonth() && containerDate.getFullYear() == newReceipt.date.getFullYear()) {
-					// month/year container already exists for newReceipt
-					containerExists = true;
-					break;
-				} 
+			if (isThereSomethingHere(theLibrary)) {
+				// Fetch receipts from storage
+				var theLibrary = JSON.parse(theLibrary);
+
+				// Does the current month/year exist in the store?
+				for(var i = 0; i < theLibrary.containers.length; i++){
+					var containerDate = new Date(theLibrary.containers[i].date);
+					// console.log("container "+ theLibrary.containers[i] + ": " + containerDate.getMonth() + " " + containerDate.getFullYear());
+					if (containerDate.getMonth() == newReceipt.date.getMonth() && containerDate.getFullYear() == newReceipt.date.getFullYear()) {
+						// month/year container already exists for newReceipt
+						containerExists = true;
+						break;
+					} 
+				}
+			} else {
+				// Library is empty: null or undefined, prepare library for push
+				theLibrary = {};
+				theLibrary.containers = [];
 			}
 
 			if (containerExists) {
-				theLibrary.containers[i].receipts.push({
-					"dataUrl": newReceipt.dataUrl,
-					"tags": newReceipt.tags
-				});
+					theLibrary.containers[i].receipts.push({
+						"dataUrl": newReceipt.dataUrl,
+						"tags": newReceipt.tags
+					});
 			} else {
 				theLibrary.containers.push({
 					"date": newReceipt.date,
@@ -113,6 +121,7 @@ function addReceipt(newReceipt) {
 					}]
 				})
 			}
+			
 			
 		}
 
