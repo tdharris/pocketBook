@@ -2,7 +2,7 @@
 function getReceipts(){
 	
 	/* Get the JSON Object from Local Stoarage */
-	var library = JSON.parse(localStorage.getItem("pbReceipts"));
+	var theLibrary = JSON.parse(localStorage.getItem("pbReceipts"));
 
 	if (typeof variable_here === 'undefined') {
 
@@ -10,10 +10,11 @@ function getReceipts(){
 
 	/* Get the Reciept Library */
 	var view = document.getElementById("library");
+	view.innerHTML = '';
 
 	/* This loop creates the month and Receipts containers */
-	for(var i = 0; i < library.containers.length; i++){
-		var containerDate = new Date(JSON.parse(library.containers[i].date));
+	for(var i = 0; i < theLibrary.containers.length; i++){
+		var containerDate = new Date(theLibrary.containers[i].date);
 
 		/* Create the Month Container */
 		var monthli = document.createElement("li");
@@ -36,7 +37,7 @@ function getReceipts(){
 
 
 	 	/* This loops Creates the Receipts Objects */
-		for(var j = 0; j < library.containers[i].receipts.length; j++){
+		for(var j = 0; j < theLibrary.containers[i].receipts.length; j++){
 
 			/* Create the Receipt Object */ 
 			var receiptLI = document.createElement("li");
@@ -46,7 +47,7 @@ function getReceipts(){
 			image.style.height = "180px";
 			image.style.width = "90px"
 
-			var url = library.containers[i].receipts[j].dataUrl;
+			var url = theLibrary.containers[i].receipts[j].dataUrl;
 			image.src = url;
 
 			/* Create the Tags Container */ 
@@ -60,12 +61,12 @@ function getReceipts(){
 			tags.className = "tag-overlay";
 
 			/* This loop creates the tags objects */
-			for(var k = 0; k < library.containers[i].receipts[j].tags.length; k++){
+			for(var k = 0; k < theLibrary.containers[i].receipts[j].tags.length; k++){
 
 				/* Create the Tag */ 
 				var tagLI = document.createElement("li");
 
-				var tagText = library.containers[i].receipts[j].tags[k];
+				var tagText = theLibrary.containers[i].receipts[j].tags[k];
 
 				tagLI.innerHTML = tagText;
 

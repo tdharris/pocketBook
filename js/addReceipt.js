@@ -25,15 +25,11 @@ document.addEventListener('DOMContentLoaded',function(){
 			addReceipt(newReceipt, function() {
 				console.log('finished adding receipt.');
 			});
+
+			document.getElementById('closeMe').click();
 		});
 	}
 });
-
-function previewImage(file) {
-	document.getElementById("showMeImg").src = window.URL.createObjectURL(file); 
-	document.getElementById('clickMe').style.display = 'none';
-	document.getElementById('showMe').style.display = 'block';
-};
 
 function render(file, done) {
 	var reader = new FileReader();
@@ -81,37 +77,43 @@ function addReceipt(newReceipt) {
 	newReceipt.date = new Date();
 	newReceipt.tags = ['best buy'];
 
-		// Add receipt to library
-		// JSON object structure "library":
+		// Add receipt to theLibrary
+		// JSON object structure "theLibrary":
 			// containers (month/year) > receipts
 			// containers: grouped by month/year
 			// receipts: dataUrl, array of tags
 
 		try {
 			// Fetch receipts from storage
-			var library = JSON.parse(localStorage.getItem("pbReceipts"));
+			var theLibrary = JSON.parse(localStorage.getItem("pbReceipts"));
 
 			// Does the current month/year exist in the store?
-			for(var i = 0; i < library.containers.length; i++){
-				// month/year container already exists for newReceipt
-				var containerDate = new Date(JSON.parse(library.containers[i].date));
+			for(var i = 0; i < theLibrary.containers.length; i++){
+				var containerExists = false;
+				var containerDate = new Date(theLibrary.containers[i].date);
+				// console.log("container "+ theLibrary.containers[i] + ": " + containerDate.getMonth() + " " + containerDate.getFullYear());
 				if (containerDate.getMonth() == newReceipt.date.getMonth() && containerDate.getFullYear() == newReceipt.date.getFullYear()) {
-					// append receipt to library.containers[i].receipts
-					library.containers[i].receipts.push({
+					// month/year container already exists for newReceipt
+					containerExists = true;
+					break;
+				} 
+			}
+
+			if (containerExists) {
+				theLibrary.containers[i].receipts.push({
+					"dataUrl": newReceipt.dataUrl,
+					"tags": newReceipt.tags
+				});
+			} else {
+				theLibrary.containers.push({
+					"date": newReceipt.date,
+					"receipts": [{
 						"dataUrl": newReceipt.dataUrl,
 						"tags": newReceipt.tags
-					});
-				} else {
-					// month/year container must be created
-					library.containers[i].push({
-						"date": newReceipt.date,
-						"receipts": [{
-							"dataUrl": newReceipt.dataUrl,
-							"tags": newReceipt.tags
-						}]
-					})
-				}
+					}]
+				})
 			}
+			
 		}
 
 		catch(e) {
@@ -119,8 +121,25 @@ function addReceipt(newReceipt) {
 		}
 
 		finally {
-			// Save library to storage
-			localStorage.setItem("pbReceipts", JSON.stringify(library));
+			// Save theLibrary to storage
+			localStorage.setItem("pbReceipts", JSON.stringify(theLibrary));
+			console.log(JSON.parse(localStorage.getItem("pbReceipts")));
+
+			// Refresh the view
+			previewReset();
+			getReceipts();
 		}
 
 }
+
+function previewImage(file) {
+	document.getElementById("showMeImg").src = window.URL.createObjectURL(file); 
+	document.getElementById('clickMe').style.display = 'none';
+	document.getElementById('showMe').style.display = 'block';
+};
+
+function previewReset() {
+	document.getElementById("showMeImg").src = ''; 
+	document.getElementById('clickMe').style.display = 'block';
+	document.getElementById('showMe').style.display = 'none';
+};
