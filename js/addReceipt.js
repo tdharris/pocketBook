@@ -102,16 +102,16 @@ function addReceipt(newReceipt) {
 					} 
 				}
 			} else {
-				// Library is empty: null or undefined, prepare library for push
+				// Library was found to be empty: null or undefined, prepare library for push
 				theLibrary = {};
 				theLibrary.containers = [];
 			}
 
 			if (containerExists) {
-					theLibrary.containers[i].receipts.push({
-						"dataUrl": newReceipt.dataUrl,
-						"tags": newReceipt.tags
-					});
+				theLibrary.containers[i].receipts.push({
+					"dataUrl": newReceipt.dataUrl,
+					"tags": newReceipt.tags
+				});
 			} else {
 				theLibrary.containers.push({
 					"date": newReceipt.date,
