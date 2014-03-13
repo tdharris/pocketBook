@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded',function(){
-	var snap = document.getElementById("snap");
-	var fileThingy = document.getElementById("file-thingy");
-	var newReceipt = document.getElementById("newReceipt"); 
+
+	var snap = document.getElementById("snap"),
+		fileThingy = document.getElementById("file-thingy"),
+		newReceipt = document.getElementById("newReceipt");
 	snap.onclick=function(e){ 
 		fileThingy.click(); 
 	};
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	newReceipt.onclick=function(e){
 		var	fileThingy = document.getElementById('file-thingy'),
 			newReceipt = {};
+		
 		console.log(fileThingy.files[0]);
 		render(fileThingy.files[0], function(dataUrl) {
 			//clear out file input
@@ -109,6 +111,7 @@ function addReceipt(newReceipt) {
 
 			if (containerExists) {
 				theLibrary.containers[i].receipts.push({
+					"uid": newReceipt.date.valueOf(),
 					"dataUrl": newReceipt.dataUrl,
 					"tags": newReceipt.tags
 				});
@@ -116,6 +119,7 @@ function addReceipt(newReceipt) {
 				theLibrary.containers.push({
 					"date": newReceipt.date,
 					"receipts": [{
+						"uid": newReceipt.date.valueOf(),
 						"dataUrl": newReceipt.dataUrl,
 						"tags": newReceipt.tags
 					}]

@@ -26,34 +26,38 @@ function getReceipts(){
 
 				/* Create the Receipt Container */ 
 				var receiptsUL= document.createElement("ul");
+				receiptsUL.setAttribute('id', 'receipts')
 				var monthText = containerDate.getMonthName() + " " + containerDate.getFullYear();
-
 
 				/* Append the elements */ 
 				monthH2.innerText = monthText; 
 				monthli.appendChild(monthH2);
-				
 				monthli.appendChild(receiptsUL);
-
 				view.appendChild(monthli);
 
-
 			 	/* This loops Creates the Receipts Objects */
-				for(var j = 0; j < theLibrary.containers[i].receipts.length; j++){
+				theLibrary.containers[i].receipts.forEach(function(theReceipt) {
 
-					/* Create the Receipt Object */ 
-					var receiptLI = document.createElement("li");
+					// Create elements
+					var receiptLI = document.createElement("li"),
+						image = document.createElement("img"),
+						url = theReceipt.dataUrl,
+						tags = document.createElement("ul");
 
-					/* Create the Image for the Receipt */ 
-					var image = document.createElement("img");
+					// Create onclick listener
+					receiptLI.addEventListener('click', function() {
+						// Remove from localStorage
+						
+						
+						// Remove from DOM
+						
+					});
+
+					receiptLI.setAttribute('id', theReceipt.uid);
+					
 					image.style.height = "180px";
 					image.style.width = "90px"
-
-					var url = theLibrary.containers[i].receipts[j].dataUrl;
 					image.src = url;
-
-					/* Create the Tags Container */ 
-					var tags = document.createElement("ul");
 
 					/* Append the iamge to the Reciept Object */ 
 					receiptsUL.appendChild(receiptLI);
@@ -63,20 +67,9 @@ function getReceipts(){
 					tags.className = "tag-overlay";
 
 					/* This loop creates the tags objects */
-					for(var k = 0; k < theLibrary.containers[i].receipts[j].tags.length; k++){
+					theReceipt.tags.forEach(createTag(tags));
 
-						/* Create the Tag */ 
-						var tagLI = document.createElement("li");
-
-						var tagText = theLibrary.containers[i].receipts[j].tags[k];
-
-						tagLI.innerHTML = tagText;
-
-						/* Append the Tag to the Containter */ 
-						tags.appendChild(tagLI);
-
-					}
-				}
+				});
 			}
 
 		}	
@@ -85,8 +78,16 @@ removeClass("library", "loading-overlay");
 
 }
 
-
-	
+function createTag(tags) {
+	return function(tagText) {
+		/* Create the Tag */ 
+		var tagLI = document.createElement("li");
+		tagLI.innerHTML = tagText;
+		
+		/* Append the Tag to the Containter */ 
+		tags.appendChild(tagLI);
+	}
+}
 
 self.addEventListener('message', function(e) {
   getReceipts();
