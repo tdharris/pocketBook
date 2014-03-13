@@ -103,10 +103,6 @@ function addReceipt(newReceipt) {
 						break;
 					} 
 				}
-			} else {
-				// Library was found to be empty: null or undefined, prepare library for push
-				theLibrary = {};
-				theLibrary.containers = [];
 			}
 
 			if (containerExists) {

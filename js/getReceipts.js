@@ -46,11 +46,9 @@ function getReceipts(){
 
 					// Create onclick listener
 					receiptLI.addEventListener('click', function() {
-						// Remove from localStorage
-						
-						
-						// Remove from DOM
-						
+						// Remove from localStorage & DOM
+						// library.removeReceipt(receipt);
+
 					});
 
 					receiptLI.setAttribute('id', theReceipt.uid);
