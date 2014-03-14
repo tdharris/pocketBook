@@ -5,11 +5,6 @@ function Receipt(data, parentElement) {
 	this.liElement = null;
 }
 
-function Receipt(data) {
-	this.init();
-	this.data = data;
-}
-
 Receipt.prototype = {
 
 	init: function() {
@@ -24,13 +19,14 @@ Receipt.prototype = {
 			tags = document.createElement("ul");
 		
 		// Set attributes
+		// TODO: dynamically set height/width
 		image.style.height = "180px";
 		image.style.width = "90px"
 		image.src = url;
 		tags.className = "tag-overlay";
 
 		// Render tags
-		receipt.tags.forEach(createTag(tags));
+		receipt.tags.forEach(this.createTag(tags).bind(this));
 
 		// Append elements to ul
 		liReceipt.appendChild(image);
@@ -39,8 +35,8 @@ Receipt.prototype = {
 		// Add eventListeners
 		this.setup.bind(this);
 
-		this.parentElement.appendChild(liReceipt);
-		// return liReceipt;
+		// this.parentElement.appendChild(liReceipt);
+		return liReceipt;
 	},
 
 	setup: function() {
@@ -53,6 +49,17 @@ Receipt.prototype = {
 		this.liElement = null;
 	},
 
+	createTag: function(tags) {
+		return function(tagText) {
+			/* Create the Tag */ 
+			var tagLI = document.createElement("li");
+			tagLI.innerHTML = tagText;
+			
+			/* Append the Tag to the Containter */ 
+			tags.appendChild(tagLI);
+		}
+	},
+
 	toJSON: function() {
 		return {
 			uuid: this.data.uuid,
@@ -61,15 +68,4 @@ Receipt.prototype = {
 		};
 	}
 
-};
-
-function createTag(tags) {
-	return function(tagText) {
-		/* Create the Tag */ 
-		var tagLI = document.createElement("li");
-		tagLI.innerHTML = tagText;
-		
-		/* Append the Tag to the Containter */ 
-		tags.appendChild(tagLI);
-	}
 };

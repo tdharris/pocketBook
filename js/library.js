@@ -10,6 +10,7 @@ Library.prototype = {
 
 		// default if it doesn't exist
 		if(!this.data) this.data = { containers: [] };
+		if(this.data) this.render().bind(this);
 	},
 
 	save: function() {
@@ -36,13 +37,7 @@ Library.prototype = {
 			liMonth.appendChild(ulReceipts);
 
 			// Append receipts to ulReceipts
-			// TODO: How to provide ulReceipts to forEach below?
-			container.receipts.forEach(function(receipt) {
-
-				var receipt = new Receipt(receipt, ulReceipts);
-				ulReceipts.appendChild(receipt.render());
-				
-			});
+			container.receipts.forEach(this.renderReceipts(ulReceipts).bind(this));
 
 			// Append to view
 			removeClass("library", "loading-overlay");
@@ -52,6 +47,12 @@ Library.prototype = {
 
 	},
 
+	renderReceipts: function(ulReceipts) {
+		return function(receipt) {
+			ulReceipts.appendChild(receipt.render());
+		}
+	},
+
 	setup: function() {
 
 	},
@@ -59,7 +60,7 @@ Library.prototype = {
 	addReceipt: function(receipt) {
 		var	fileThingy = document.getElementById('file-thingy');
 
-		getDataURL(fileThingy.files[0], function(dataUrl) {
+		this.getDataURL(fileThingy.files[0], function(dataUrl) {
 			var newReceipt = new Receipt({ "url": dataUrl });
 
 			// check for existing container by date
@@ -147,7 +148,5 @@ Library.prototype = {
 		};
 		reader.readAsDataURL(file);
 	},
-
-
 
 };

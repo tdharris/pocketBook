@@ -49,6 +49,7 @@ function getReceipts(){
 						// Remove from localStorage & DOM
 						// library.removeReceipt(receipt);
 
+
 					});
 
 					receiptLI.setAttribute('id', theReceipt.uid);
@@ -72,7 +73,7 @@ function getReceipts(){
 
 		}	
 		
-removeClass("library", "loading-overlay");
+	removeClass("library", "loading-overlay");
 
 }
 
