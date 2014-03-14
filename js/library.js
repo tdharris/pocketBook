@@ -38,30 +38,10 @@ Library.prototype = {
 			// Append receipts to ulReceipts
 			// TODO: How to provide ulReceipts to forEach below?
 			container.receipts.forEach(function(receipt) {
-				var liReceipt = document.createElement("li"),
-					image = document.createElement("img"),
-					url = receipt.dataUrl,
-					tags = document.createElement("ul");
 
-				liReceipt.addEventListener('click', function() {
-					// Remove from localStorage & DOM
-					// library.removeReceipt(receipt);
-					
-				});
+				var receipt = new Receipt(receipt, ulReceipts);
+				ulReceipts.appendChild(receipt.render());
 				
-				// Set attributes
-				image.style.height = "180px";
-				image.style.width = "90px"
-				image.src = url;
-				tags.className = "tag-overlay";
-
-				// Append elements to ul
-				liReceipt.appendChild(image);
-				liReceipt.appendChild(tags);
-				ulReceipts.appendChild(liReceipt);
-				
-				// Render tags
-				receipt.tags.forEach(createTag(tags));
 			});
 
 			// Append to view
@@ -77,21 +57,32 @@ Library.prototype = {
 	},
 
 	addReceipt: function(receipt) {
-		// check for existing container by date
-		var containerKey = receipt.containerKey; // 12-2013
+		var	fileThingy = document.getElementById('file-thingy');
 
-		if(!this.data.containers[containerKey]) {
-			this.data.containers[containerKey] = [];
-		}
+		getDataURL(fileThingy.files[0], function(dataUrl) {
+			var newReceipt = new Receipt({ "url": dataUrl });
 
-		this.data.containers[containerKey].push({
-			containerKey: containerKey,
-			uuid: receipt.uuid,
-			dataUrl: receipt.dataUrl,
-			tags: receipt.tags
+			// check for existing container by date
+			var containerKey = receipt.containerKey; // 12-2013
+
+			if(!this.data.containers[containerKey]) {
+				this.data.containers[containerKey] = [];
+			}
+
+			this.data.containers[containerKey].push({
+				containerKey: containerKey,
+				uuid: receipt.uuid,
+				dataUrl: receipt.dataUrl,
+				tags: receipt.tags
+			});
+
+			this.save();
+
+			// Append to view
+			getReceipts();
+
 		});
-
-		this.save();
+		
 	},
 
 	removeReceipt: function(receipt) {
@@ -115,17 +106,48 @@ Library.prototype = {
 			name: this.data.name,
 			container: this.data.containers
 		}
-	}
+	},
 
-};
+	getDataURL: function(file, done) {
+		var reader = new FileReader();
 
-function createTag(tags) {
-	return function(tagText) {
-		/* Create the Tag */ 
-		var tagLI = document.createElement("li");
-		tagLI.innerHTML = tagText;
-		
-		/* Append the Tag to the Containter */ 
-		tags.appendChild(tagLI);
-	}
+		reader.onload = function(e) {
+			var dataUrl = e.target.result,
+				img = document.createElement('img'),
+				canvas = document.createElement('canvas'),
+				MAX_WIDTH = 250,
+				MAX_HEIGHT = 450;
+			
+			// wait for image to load before checking width/height etc.
+			img.onload = function() {
+				// resize to MAX_HEIGHT and maintain aspect ratio
+				if (img.width > img.height) {
+				  if (img.width > MAX_WIDTH) {
+				    img.height *= MAX_WIDTH / img.width;
+				    img.width = MAX_WIDTH;
+				  }
+				} else {
+				  if (img.height > MAX_HEIGHT) {
+				    img.width *= MAX_HEIGHT / img.height;
+				    img.height = MAX_HEIGHT;
+				  }
+				}
+				var ctx = canvas.getContext('2d');
+				// reset canvas for rendering into
+				ctx.clearRect(0,0, canvas.width, canvas.height);
+				canvas.width = img.width;
+				canvas.height = img.height;
+				ctx.drawImage(img, 0, 0, img.width, img.height);
+				
+				// pass along data url in callback
+				done(canvas.toDataURL());
+				
+			}
+			img.src=e.target.result;
+		};
+		reader.readAsDataURL(file);
+	},
+
+
+
 };
