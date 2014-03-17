@@ -4,27 +4,27 @@ var newReceipts = { "containers": [
 	{ 	"date": new Date(2012, 01, 25),
 		"receipts": [
 			{
-				"dataUrl": daimg,
+				"url": daimg,
 				"tags": ['best buy','asia'] 
 			},
 			{
-				"dataUrl": daimg,
-				"tags": ['best buy','asia'] 
+				"url": daimg,
+				"tags": ['pizza'] 
 			}
 			// {
-			// 	"dataUrl": daimg,
+			// 	"url": daimg,
 			// 	"tags": ['best buy','asia'] 
 			// },
 			// {
-			// 	"dataUrl": daimg,
+			// 	"url": daimg,
 			// 	"tags": ['best buy','asia'] 
 			// },
 			// {
-			// 	"dataUrl": daimg,
+			// 	"url": daimg,
 			// 	"tags": ['best buy','asia'] 
 			// },
 			// {
-			// 	"dataUrl": daimg,
+			// 	"url": daimg,
 			// 	"tags": ['best buy','asia'] 
 			// }
 	]}

@@ -14,6 +14,7 @@ function getReceipts(){
 			var view = document.getElementById("library");
 			view.innerHTML = '';
 
+			console.log(theLibrary);
 			/* This loop creates the month and Receipts containers */
 			for(var i = 0; i < theLibrary.containers.length; i++){
 				var containerDate = new Date(theLibrary.containers[i].date);
@@ -26,7 +27,6 @@ function getReceipts(){
 
 				/* Create the Receipt Container */ 
 				var receiptsUL= document.createElement("ul");
-				receiptsUL.setAttribute('id', 'receipts')
 				var monthText = containerDate.getMonthName() + " " + containerDate.getFullYear();
 
 				/* Append the elements */ 

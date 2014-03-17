@@ -1,6 +1,6 @@
 function Receipt(data, parentElement) {
-	this.init();
 	this.data = data;
+	this.init();
 	this.parentElement = parentElement;
 	this.liElement = null;
 }
@@ -10,12 +10,13 @@ Receipt.prototype = {
 	init: function() {
 		this.data.date = new Date();
 		this.data.containerKey = this.data.date.getMonth() + "-" + this.data.date.getFullYear();
+		this.data.uuid = this.data.date.valueOf();
 	},
 
 	render: function() {
 		var liReceipt = document.createElement("li"),
 			image = document.createElement("img"),
-			url = receipt.dataUrl,
+			url = this.data.url,
 			tags = document.createElement("ul");
 		
 		// Set attributes
@@ -26,7 +27,7 @@ Receipt.prototype = {
 		tags.className = "tag-overlay";
 
 		// Render tags
-		receipt.tags.forEach(this.createTag(tags).bind(this));
+		this.data.tags.forEach(this.createTag(tags));
 
 		// Append elements to ul
 		liReceipt.appendChild(image);
@@ -62,9 +63,10 @@ Receipt.prototype = {
 
 	toJSON: function() {
 		return {
+			containerKey: this.containerKey,
 			uuid: this.data.uuid,
-			dataUrl : this.data.url,
-			containerKey: this.containerKey
+			url: this.data.url,
+			tags: this.data.tags
 		};
 	}
 

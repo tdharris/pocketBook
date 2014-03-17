@@ -6,21 +6,24 @@
 	<!-- prevent zooming in mobile browsers -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 	
-	<!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/home.css">
 	<!-- <link rel="stylesheet" href="css/dropzone.css"> -->
 	<script type="text/javascript" src="js/library.js"></script>
 	<script type="text/javascript" src="js/addReceipt.js"></script>
 	<script type="text/javascript" src="js/getReceipts.js"></script>
-	<!-- <script type="text/javascript" src="js/createReceiptsJSON.js"></script> -->
+	<script type="text/javascript" src="js/createReceiptsJSON.js"></script>
 	<script type="text/javascript" src="js/utility.js"></script>
+	<script type="text/javascript" src="js/receipt.js"></script>
+	<script type="text/javascript" src="js/library.js"></script>
 
 	<script tye="text/javascript">
 
 	// When document is ready (newer browsers)
 	document.addEventListener('DOMContentLoaded',function(){
-
-		getReceipts();
+		// var lib = new Library("pbReceipts");
+		// var r = new Receipt(lib.data.containers[0].receipts[0]);
+		// getReceipts();
 		// var myWorker = new Worker("js/getReceipts.js");
 		// worker.postMessage();
 	});

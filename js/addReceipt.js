@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded',function(){
 
+	var lib = new Library("pbReceipts");
+
 	var snap = document.getElementById("snap"),
 		fileThingy = document.getElementById("file-thingy"),
 		newReceipt = document.getElementById("newReceipt");
@@ -12,24 +14,25 @@ document.addEventListener('DOMContentLoaded',function(){
 	};
 	newReceipt.onclick=function(e){
 		var	fileThingy = document.getElementById('file-thingy'),
-			newReceipt = {};
-		
-		console.log(fileThingy.files[0]);
-		render(fileThingy.files[0], function(dataUrl) {
-			//clear out file input
-			fileThingy.value = null;
+			tags = ['tag1', 'tag2'];
+
+		lib.addReceipt(fileThingy.files[0], tags);
+
+		// render(fileThingy.files[0], function(dataUrl) {
+		// 	//clear out file input
+		// 	fileThingy.value = null;
 			
-			//do something with data url
-			console.log('my data url: ', dataUrl);
-			newReceipt.dataUrl = dataUrl;
-			// newReceipt.tags = document.getElementById('').value;
+		// 	//do something with data url
+		// 	console.log('my data url: ', dataUrl);
+		// 	newReceipt.dataUrl = dataUrl;
+		// 	// newReceipt.tags = document.getElementById('').value;
 
-			addReceipt(newReceipt, function() {
-				console.log('finished adding receipt.');
-			});
+		// 	addReceipt(newReceipt, function() {
+		// 		console.log('finished adding receipt.');
+		// 	});
 
-			document.getElementById('closeMe').click();
-		});
+		// 	document.getElementById('closeMe').click();
+		// });
 	}
 });
 

@@ -7,10 +7,11 @@ Library.prototype = {
 
 	load: function(){
 		this.data = JSON.parse(localStorage.getItem(this.name));
+		if(this.data) this.render();
 
 		// default if it doesn't exist
 		if(!this.data) this.data = { containers: [] };
-		if(this.data) this.render().bind(this);
+		
 	},
 
 	save: function() {
@@ -20,67 +21,56 @@ Library.prototype = {
 	render: function() {
 		addClass("library", "loading-overlay");
 
-		this.containers.forEach(function(container) {
-			var view = document.getElementById("library"),
-				date = new Date(container.date),
-				liMonth = document.createElement("li"),
-				h2Month = document.createElement("h2"),
-				ulReceipts = document.createElement("ul"),
-				monthText = date.getMonthName() + " " + date.getFullYear();
+		var view = document.getElementById("library");
+		view.innerHTML = '';
+				
+		this.data.containers.forEach(renderContainers(view).bind(this));
 
-			// Reset current view
-			view.innerHTML = '';
-
-			// Append elements to container
-			h2Month.innerText = monthText;
-			liMonth.appendChild(h2Month);
-			liMonth.appendChild(ulReceipts);
-
-			// Append receipts to ulReceipts
-			container.receipts.forEach(this.renderReceipts(ulReceipts).bind(this));
-
-			// Append to view
-			removeClass("library", "loading-overlay");
-			view.appendChild(liMonth);
-
-		});
-
+		removeClass("library", "loading-overlay");
 	},
 
-	renderReceipts: function(ulReceipts) {
-		return function(receipt) {
-			ulReceipts.appendChild(receipt.render());
-		}
+	getReceipts: function() {
+		return this.data.containers;
 	},
+
+	// renderReceipts: function(ulReceipts) {
+	// 	return function(receiptJSON) {
+	// 		console.log(receiptJSON);
+	// 		var receipt = new Receipt(receiptJSON);
+	// 		ulReceipts.appendChild(receipt.render());
+	// 	}
+	// },
 
 	setup: function() {
 
 	},
 
-	addReceipt: function(receipt) {
-		var	fileThingy = document.getElementById('file-thingy');
+	addReceipt: function(file, tags) {
 
-		this.getDataURL(fileThingy.files[0], function(dataUrl) {
-			var newReceipt = new Receipt({ "url": dataUrl });
+		this.getDataURL(file, function(dataUrl) {
+			var receipt = new Receipt({
+				"url": dataUrl,
+				"tags": tags
+			});
 
+			delete dataUrl;
+			
 			// check for existing container by date
-			var containerKey = receipt.containerKey; // 12-2013
+			var containerKey = receipt.data.containerKey; // 12-2013
 
+			// TODO: Uncaught TypeError: Cannot read property 'containers' of undefined 
+			// this here actually is referring to window/global, while this above (this.getDataURL) doesn't
 			if(!this.data.containers[containerKey]) {
 				this.data.containers[containerKey] = [];
 			}
 
-			this.data.containers[containerKey].push({
-				containerKey: containerKey,
-				uuid: receipt.uuid,
-				dataUrl: receipt.dataUrl,
-				tags: receipt.tags
-			});
+			this.data.containers[containerKey].push(receipt.toString());
 
+			// Save to localStorage
 			this.save();
 
 			// Append to view
-			getReceipts();
+			this.render();
 
 		});
 		
@@ -150,3 +140,33 @@ Library.prototype = {
 	},
 
 };
+
+function renderContainers(view) {
+	return function(container) {
+		date = new Date(container.date),
+		liMonth = document.createElement("li"),
+		h2Month = document.createElement("h2"),
+		ulReceipts = document.createElement("ul"),
+		monthText = date.getMonthName() + " " + date.getFullYear();
+
+		// Append elements to container
+		h2Month.innerText = monthText;
+		liMonth.appendChild(h2Month);
+		liMonth.appendChild(ulReceipts);
+
+		// Append receipts to ulReceipts
+		container.receipts.forEach(renderReceipts(ulReceipts).bind(this));
+
+		// Append to view
+		liMonth.classList.add("fadeInDown");
+		view.appendChild(liMonth);
+	}
+
+}
+
+function renderReceipts(ulReceipts) {
+	return function(receiptJSON) {
+		var receipt = new Receipt(receiptJSON);
+		ulReceipts.appendChild(receipt.render());
+	}
+}
