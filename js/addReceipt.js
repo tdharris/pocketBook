@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded',function(){
 		var	fileThingy = document.getElementById('file-thingy'),
 			tags = ['tag1', 'tag2'];
 
-		lib.addReceipt(fileThingy.files[0], tags);
+		lib.addReceipt({
+			"file": fileThingy.files[0],
+			"tags": tags
+		});
 
 		// render(fileThingy.files[0], function(dataUrl) {
 		// 	//clear out file input

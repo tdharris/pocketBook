@@ -2,7 +2,7 @@ function Receipt(data, parentElement) {
 	this.data = data;
 	this.init();
 	this.parentElement = parentElement;
-	this.liElement = null;
+	this.liReceipt = null;
 }
 
 Receipt.prototype = {
@@ -14,8 +14,8 @@ Receipt.prototype = {
 	},
 
 	render: function() {
-		var liReceipt = document.createElement("li"),
-			image = document.createElement("img"),
+		this.liReceipt = document.createElement("li");
+		var image = document.createElement("img"),
 			url = this.data.url,
 			tags = document.createElement("ul");
 		
@@ -30,24 +30,25 @@ Receipt.prototype = {
 		this.data.tags.forEach(this.createTag(tags));
 
 		// Append elements to ul
-		liReceipt.appendChild(image);
-		liReceipt.appendChild(tags);
+		this.liReceipt.appendChild(image);
+		this.liReceipt.appendChild(tags);
 
 		// Add eventListeners
 		this.setup.bind(this);
 
-		// this.parentElement.appendChild(liReceipt);
-		return liReceipt;
+		this.parentElement.appendChild(this.liReceipt);
+		// return liReceipt;
 	},
 
 	setup: function() {
-		this.liElement.addEventListener('click', this.remove.bind(this));
+		this.liReceipt.addEventListener('click', this.remove.bind(this));
 	},
 
 	remove: function() {
 		// Remove from localStorage & DOM
-		this.parentElement.removeChild(this.liElement);
-		this.liElement = null;
+		console.log('removing');
+		this.parentElement.removeChild(this.liReceipt);
+		this.liReceipt = null;
 	},
 
 	createTag: function(tags) {
