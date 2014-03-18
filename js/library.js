@@ -12,7 +12,10 @@ Library.prototype = {
 		if(this.data) this.render();
  
 		// default if it doesn't exist
-		if(!this.data) this.data = { containers: {} };
+		if(!this.data) { 
+			this.data = { containers: {} };
+			this.view.innerHTML = '';
+		}
 	},
  
 	save: function() {
@@ -61,7 +64,8 @@ Library.prototype = {
 			fileThingy = document.getElementById("file-thingy"),
 			newReceipt = document.getElementById("newReceipt"),
 			openMe = document.getElementById("openMe"),
-			closeMe = document.getElementById("closeMe");
+			closeMe = document.getElementById("closeMe"),
+			clearAll = document.getElementById("clearAll");
 
 		openMe.onclick = function(e) {
 			self.previewReset();
@@ -69,6 +73,9 @@ Library.prototype = {
 		}
 		closeMe.onclick = function(e) {
 			self.blur(false);
+		}
+		clearAll.onclick = function(e) {
+			self.deleteLibrary();
 		}
 
 		snap.onclick = function(e) { 
@@ -211,6 +218,11 @@ Library.prototype = {
 			header.classList.remove('blur');
 			footer.classList.remove('blur');
 		}
+	},
+
+	deleteLibrary: function() {
+		localStorage.setItem(this.name, null);
+		this.load();
 	}
  
 };
