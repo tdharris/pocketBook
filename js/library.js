@@ -60,10 +60,15 @@ Library.prototype = {
 	 		snap = document.getElementById("snap"),
 			fileThingy = document.getElementById("file-thingy"),
 			newReceipt = document.getElementById("newReceipt"),
-			openMe = document.getElementById("openMe");
+			openMe = document.getElementById("openMe"),
+			closeMe = document.getElementById("closeMe");
 
 		openMe.onclick = function(e) {
 			self.previewReset();
+			self.blur(true);
+		}
+		closeMe.onclick = function(e) {
+			self.blur(false);
 		}
 
 		snap.onclick = function(e) { 
@@ -193,6 +198,19 @@ Library.prototype = {
 		document.getElementById("showMeImg").src = ''; 
 		document.getElementById('clickMe').style.display = 'block';
 		document.getElementById('showMe').style.display = 'none';
+	},
+
+	blur: function(boolean) {
+		var header = document.getElementsByTagName('header')[0],
+			footer = document.getElementsByTagName('footer')[0];
+		if (boolean) {
+			header.classList.add('blur');
+			footer.classList.add('blur');
+		}
+		else {
+			header.classList.remove('blur');
+			footer.classList.remove('blur');
+		}
 	}
  
 };
