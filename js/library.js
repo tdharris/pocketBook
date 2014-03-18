@@ -86,7 +86,6 @@ Library.prototype = {
 		fileThingy.onchange = function(e) { 
 			var file=e.target.files[0];
 			self.previewImage(file);
-			console.log(file);
 		}
 
 		newReceipt.onclick = function(e) {
@@ -214,10 +213,12 @@ Library.prototype = {
 			footer = document.getElementsByTagName('footer')[0];
 		if (boolean) {
 			header.classList.add('blur');
+			this.view.classList.add('blur');
 			footer.classList.add('blur');
 		}
 		else {
 			header.classList.remove('blur');
+			this.view.classList.remove('blur')
 			footer.classList.remove('blur');
 		}
 	},
