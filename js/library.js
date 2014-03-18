@@ -73,6 +73,7 @@ Library.prototype = {
 		}
 		closeMe.onclick = function(e) {
 			self.blur(false);
+			fileThingy.value = null;
 		}
 		clearAll.onclick = function(e) {
 			self.deleteLibrary();
@@ -85,6 +86,7 @@ Library.prototype = {
 		fileThingy.onchange = function(e) { 
 			var file=e.target.files[0];
 			self.previewImage(file);
+			console.log(file);
 		}
 
 		newReceipt.onclick = function(e) {
@@ -108,7 +110,7 @@ Library.prototype = {
 				"url": dataUrl,
 				"tags": data.tags
 			});
- 
+ 			
 			delete dataUrl;
 			
 			// check for existing container by date
@@ -196,13 +198,13 @@ Library.prototype = {
 	},
 
 	previewImage: function(file) {
-		document.getElementById("showMeImg").src = window.URL.createObjectURL(file); 
+		document.getElementById('showMeImg').src = window.URL.createObjectURL(file); 
 		document.getElementById('clickMe').style.display = 'none';
 		document.getElementById('showMe').style.display = 'block';
 	},
 
 	previewReset: function() {
-		document.getElementById("showMeImg").src = ''; 
+		document.getElementById('showMeImg').src = ''; 
 		document.getElementById('clickMe').style.display = 'block';
 		document.getElementById('showMe').style.display = 'none';
 	},
