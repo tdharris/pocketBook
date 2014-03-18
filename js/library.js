@@ -7,32 +7,21 @@ function Library(name) {
 Library.prototype = {
  
 	load: function(){
+		this.setup();
 		this.data = JSON.parse(localStorage.getItem(this.name));
 		if(this.data) this.render();
  
 		// default if it doesn't exist
 		if(!this.data) this.data = { containers: {} };
-		
 	},
  
 	save: function() {
-		console.log('saving library: ', this.name, this.data);
-
-		try {
-			console.log('JSON stringify is fine: ', JSON.stringify(this.data));
-			localStorage[this.name] = JSON.stringify(this.data);
-		}
-		catch (e) {
-			console.log(e);
-		}
+		localStorage[this.name] = JSON.stringify(this.data);
 	},
  
 	render: function() {
 		var self = this;
- 
 		addClass("library", "loading-overlay");
- 
-		// reset/clear out view
 		this.view.innerHTML = '';
 				
 		Object.keys(this.data.containers).forEach(function(key) {
@@ -58,7 +47,7 @@ Library.prototype = {
 		// Append receipts to ulReceipts
 		container.receipts.forEach(function(receiptJSON) {
 			var receipt = new Receipt(receiptJSON, ulReceipts);
-			receipt.render(ulReceipts);
+			receipt.render();
 		});
  
 		// Append to view
@@ -66,16 +55,42 @@ Library.prototype = {
 		this.view.appendChild(liMonth);
 	},
  
-	getReceipts: function() {
-		return this.data.containers;
-	},
- 
 	setup: function() {
- 
+	 	var self = this,
+	 		snap = document.getElementById("snap"),
+			fileThingy = document.getElementById("file-thingy"),
+			newReceipt = document.getElementById("newReceipt"),
+			openMe = document.getElementById("openMe");
+
+		openMe.onclick = function(e) {
+			self.previewReset();
+		}
+
+		snap.onclick = function(e) { 
+			fileThingy.click(); 
+		}
+
+		fileThingy.onchange = function(e) { 
+			var file=e.target.files[0];
+			self.previewImage(file);
+		}
+
+		newReceipt.onclick = function(e) {
+			var	fileThingy = document.getElementById('file-thingy'),
+				tags = ['tag1', 'tag2'];
+
+			self.addReceipt({
+				"file": fileThingy.files[0],
+				"tags": tags
+			}, function() {
+				document.getElementById('closeMe').click();
+			});
+
+		}
 	},
  
-	addReceipt: function(data) {
- 		var self = this;
+	addReceipt: function(data, done) {
+		var self = this;
 		this.getDataURL(data.file, function(dataUrl) {
 			var receipt = new Receipt({
 				"url": dataUrl,
@@ -87,28 +102,22 @@ Library.prototype = {
 			// check for existing container by date
 			var containerKey = receipt.data.containerKey; // 12-2013
  
-			// TODO: Uncaught TypeError: Cannot read property 'containers' of undefined 
-			// this here actually is referring to window/global, while this above (this.getDataURL) doesn't
 			if(!self.data.containers[containerKey]) {
 				self.data.containers[containerKey] = {
 					"date": new Date(),
 					"receipts": []
 				};
 			}
- 
+ 			
 			self.data.containers[containerKey].receipts.push(receipt.data);
  
-			// Save to localStorage
-			console.log('from memory: ', self.data);
+			// Save to localStorage & append to view
 			self.save();
- 			
- 
-			// Append to view
 			self.render();
-			console.log('from localStorage: ', JSON.parse(localStorage.getItem('pbReceipts')));
- 
+ 			
+ 			done();
 		});
-		
+
 	},
  
 	removeReceipt: function(receipt) {
@@ -173,5 +182,17 @@ Library.prototype = {
 		};
 		reader.readAsDataURL(file);
 	},
+
+	previewImage: function(file) {
+		document.getElementById("showMeImg").src = window.URL.createObjectURL(file); 
+		document.getElementById('clickMe').style.display = 'none';
+		document.getElementById('showMe').style.display = 'block';
+	},
+
+	previewReset: function() {
+		document.getElementById("showMeImg").src = ''; 
+		document.getElementById('clickMe').style.display = 'block';
+		document.getElementById('showMe').style.display = 'none';
+	}
  
 };

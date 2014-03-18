@@ -2,7 +2,6 @@ function Receipt(data, parentElement) {
 	this.data = data;
 	this.init();
 	this.parentElement = parentElement;
-	this.liReceipt = null;
 }
 
 Receipt.prototype = {

@@ -8,64 +8,49 @@
 	
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/home.css">
-	<!-- <link rel="stylesheet" href="css/dropzone.css"> -->
-	<script type="text/javascript" src="js/library.js"></script>
-	<script type="text/javascript" src="js/addReceipt.js"></script>
-	<script type="text/javascript" src="js/getReceipts.js"></script>
-	<!-- <script type="text/javascript" src="js/createReceiptsJSON.js"></script> -->
+
 	<script type="text/javascript" src="js/utility.js"></script>
-	<script type="text/javascript" src="js/receipt.js"></script>
 	<script type="text/javascript" src="js/library.js"></script>
+	<script type="text/javascript" src="js/receipt.js"></script>
+	<script type="text/javascript" src="js/initialize.js"></script>
+	<!-- <script type="text/javascript" src="js/populateStorage.js"></script>  -->
 
-	<script tye="text/javascript">
-
-	// When document is ready (newer browsers)
-	document.addEventListener('DOMContentLoaded',function(){
-		// var lib = new Library("pbReceipts");
-		// var r = new Receipt(lib.data.containers[0].receipts[0]);
-		// getReceipts();
-		// var myWorker = new Worker("js/getReceipts.js");
-		// worker.postMessage();
-	});
-	
-	</script>
 	</head>
 
 	<body>
-
 		<header class="dark">
 			PocketBook
 		<i class="fa fa-share-square pull-right"></i>
 	</header>
+
 		<aside id="photo-container" class="sliderdeactivated">
 			<input type="file" id="take-picture" accept="image/*">
 		</aside>
-	<main>
 
-		<ul id="library" class="flexcontainer">
-			<!-- <li><img><ul class="tag-overlay"><li>best buy</li><li>asia</li></ul></li> -->
-		</ul>
+	<main>
+		<ul id="library" class="flexcontainer"></ul>
 	</main>
 
 	<aside id="modal" class="modal">
 	    <div>
 			<div id="snap" action="#" class="dropzone flexcontainer-center">
+
 				<input type="file" id="file-thingy" accept="image/*;capture=camera" style="display:none;" > 
-				<!-- <button id="snap">
-				 Take A Photo Click here and use the camera
-				</button> -->
+
 				<div id="clickMe" class="flexcontainer-center">
 					<i class="fa fa-camera opacity"></i>
 					<h4 class="opacity">Select Image</h4>
 				</div>
+
 				<div id="showMe">
 					<img id="showMeImg" src="">
 				</div>
-				
-				
+			
 			</div> 
+
 			<button id="newReceipt">Submit</button>
 	        <a id="closeMe" href="#close" title="Close">Close</a>
+
 	    </div>
 	</aside>
 
