@@ -11,7 +11,7 @@ Library.prototype = {
 		if(this.data) this.render();
  
 		// default if it doesn't exist
-		if(!this.data) this.data = { containers: [] };
+		if(!this.data) this.data = { containers: {} };
 		
 	},
  
@@ -20,7 +20,7 @@ Library.prototype = {
 
 		try {
 			console.log('JSON stringify is fine: ', JSON.stringify(this.data));
-			localStorage.setItem(this.name, JSON.stringify(this.data));
+			localStorage[this.name] = JSON.stringify(this.data);
 		}
 		catch (e) {
 			console.log(e);
@@ -28,12 +28,16 @@ Library.prototype = {
 	},
  
 	render: function() {
+		var self = this;
+ 
 		addClass("library", "loading-overlay");
  
 		// reset/clear out view
 		this.view.innerHTML = '';
 				
-		this.data.containers.forEach(this.renderContainer.bind(this));
+		Object.keys(this.data.containers).forEach(function(key) {
+			self.renderContainer(self.data.containers[key]);
+		});
  
 		removeClass("library", "loading-overlay");
 	},
@@ -98,11 +102,10 @@ Library.prototype = {
 			console.log('from memory: ', self.data);
 			self.save();
  			
-
+ 
 			// Append to view
 			self.render();
 			console.log('from localStorage: ', JSON.parse(localStorage.getItem('pbReceipts')));
-			console.log(self);
  
 		});
 		

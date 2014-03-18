@@ -11,22 +11,6 @@ var newReceipts = { "containers": [
 				"url": daimg,
 				"tags": ['pizza'] 
 			}
-			// {
-			// 	"url": daimg,
-			// 	"tags": ['best buy','asia'] 
-			// },
-			// {
-			// 	"url": daimg,
-			// 	"tags": ['best buy','asia'] 
-			// },
-			// {
-			// 	"url": daimg,
-			// 	"tags": ['best buy','asia'] 
-			// },
-			// {
-			// 	"url": daimg,
-			// 	"tags": ['best buy','asia'] 
-			// }
 	]}
 ]};
 
