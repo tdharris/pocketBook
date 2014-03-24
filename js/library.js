@@ -17,6 +17,7 @@ Library.prototype = {
 			this.view.innerHTML = '';
 		}
 	},
+	
  
 	save: function() {
 		localStorage[this.name] = JSON.stringify(this.data);
@@ -70,6 +71,7 @@ Library.prototype = {
 		openMe.onclick = function(e) {
 			self.previewReset();
 			self.blur(true);
+			var multi = new multiselect();
 		}
 		closeMe.onclick = function(e) {
 			self.blur(false);
@@ -86,6 +88,10 @@ Library.prototype = {
 		fileThingy.onchange = function(e) { 
 			var file=e.target.files[0];
 			self.previewImage(file);
+		}
+
+		newTag.onblur = function(e){
+			alert("hi");
 		}
 
 		newReceipt.onclick = function(e) {
