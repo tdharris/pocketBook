@@ -27,8 +27,7 @@ Library.prototype = {
 
 		this.appMap = [];
 	 	var self = this,
-			fileThingy = document.getElementById("file-thingy"),
-			newReceipt = document.getElementById("newReceipt");
+			fileThingy = document.getElementById("file-thingy");
 
 		this.addToAppHandler('openMe', function() {
 			self.previewReset();
