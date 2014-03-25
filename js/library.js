@@ -17,8 +17,61 @@ Library.prototype = {
 			this.view.innerHTML = '';
 		}
 	},
+
+	setup: function() {
+
+		document.handleRequest = function(e) {
+			var theClickedThing = e.currentTarget.attributes.id.nodeValue;
+			self.appMap[theClickedThing](e);
+		}
+
+		this.appMap = [];
+	 	var self = this,
+			fileThingy = document.getElementById("file-thingy"),
+			newReceipt = document.getElementById("newReceipt");
+
+		this.addToAppHandler('openMe', function() {
+			self.previewReset();
+			self.blur(true);
+			// var multi = new multiselect();
+		});
+
+		this.addToAppHandler('closeMe', function() {
+			self.blur(false);
+			fileThingy.value = null;
+		});
+
+		this.addToAppHandler('clearAll', function() {
+			self.deleteLibrary();
+		});
+
+		this.addToAppHandler('dropzone', function() {
+			fileThingy.click(); 
+		});
+
+		this.addToAppHandler('newReceipt', function() {
+			var	fileThingy = document.getElementById('file-thingy'),
+				tags = ['tag1', 'tag2'];
+
+			self.addReceipt({
+				"file": fileThingy.files[0],
+				"tags": tags
+			}, function() {
+				document.getElementById('closeMe').click();
+			});
+		});
+
+		this.addToAppHandler('file-thingy', function(e) {
+			var file=e.target.files[0];
+			self.previewImage(file);
+		});
+
+	},
+
+	addToAppHandler: function(akey, newFunction) {
+		this.appMap[akey] = newFunction;
+	},
 	
- 
 	save: function() {
 		localStorage[this.name] = JSON.stringify(this.data);
 	},
@@ -34,7 +87,7 @@ Library.prototype = {
  
 		removeClass("library", "loading-overlay");
 	},
- 
+
 	renderContainer: function(container) {
 		var self = this,
 			date = new Date(container.date),
@@ -57,55 +110,6 @@ Library.prototype = {
 		// Append to view
 		liMonth.classList.add("fadeInDown");
 		this.view.appendChild(liMonth);
-	},
- 
-	setup: function() {
-	 	var self = this,
-	 		snap = document.getElementById("snap"),
-			fileThingy = document.getElementById("file-thingy"),
-			newReceipt = document.getElementById("newReceipt"),
-			openMe = document.getElementById("openMe"),
-			closeMe = document.getElementById("closeMe"),
-			clearAll = document.getElementById("clearAll");
-
-		openMe.onclick = function(e) {
-			self.previewReset();
-			self.blur(true);
-			var multi = new multiselect();
-		}
-		closeMe.onclick = function(e) {
-			self.blur(false);
-			fileThingy.value = null;
-		}
-		clearAll.onclick = function(e) {
-			self.deleteLibrary();
-		}
-
-		snap.onclick = function(e) { 
-			fileThingy.click(); 
-		}
-
-		fileThingy.onchange = function(e) { 
-			var file=e.target.files[0];
-			self.previewImage(file);
-		}
-
-		newTag.onblur = function(e){
-			alert("hi");
-		}
-
-		newReceipt.onclick = function(e) {
-			var	fileThingy = document.getElementById('file-thingy'),
-				tags = ['tag1', 'tag2'];
-
-			self.addReceipt({
-				"file": fileThingy.files[0],
-				"tags": tags
-			}, function() {
-				document.getElementById('closeMe').click();
-			});
-
-		}
 	},
  
 	addReceipt: function(data, done) {

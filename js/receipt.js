@@ -33,7 +33,7 @@ Receipt.prototype = {
 		this.liReceipt.appendChild(tags);
 
 		// Add eventListeners
-		this.setup.bind(this);
+		this.setup();
 
 		this.parentElement.appendChild(this.liReceipt);
 		// return liReceipt;
