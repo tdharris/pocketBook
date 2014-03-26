@@ -16,6 +16,8 @@ Library.prototype = {
 			this.data = { containers: {} };
 			this.view.innerHTML = '';
 		}
+
+		if(!this.data.tagList) this.data.tagList = [];
 	},
 
 	save: function() {
@@ -235,6 +237,27 @@ Library.prototype = {
 			this.view.classList.remove('blur')
 			footer.classList.remove('blur');
 		}
+	},
+	multiselect: function(){
+		var listoftags=  ["walmart", "best", "hi"],
+			taglistUL = document.getElementById('taglistUL'),
+			self = this;
+
+		function setupTagList(self) {
+			return function(tag) {
+				var taglistLI = document.createElement("li");
+				taglistLI.innerHTML = tag;
+				// taglistLI.setAttribute('id', tagdata);
+				taglistLI.onclick = function (){
+					self.data.tagList.push(tag);
+					console.log(self.data.tagList);
+				}
+				taglistUL.appendChild(taglistLI);
+			}
+		}
+
+		listoftags.forEach(setupTagList(self));
+			
 	}
  
 };
