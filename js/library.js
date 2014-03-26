@@ -18,6 +18,10 @@ Library.prototype = {
 		}
 	},
 
+	save: function() {
+		localStorage[this.name] = JSON.stringify(this.data);
+	},
+
 	setup: function() {
 
 		document.handleRequest = function(e) {
@@ -69,10 +73,6 @@ Library.prototype = {
 
 	addToAppHandler: function(akey, newFunction) {
 		this.appMap[akey] = newFunction;
-	},
-	
-	save: function() {
-		localStorage[this.name] = JSON.stringify(this.data);
 	},
  
 	render: function() {
@@ -157,6 +157,11 @@ Library.prototype = {
  
 		this.save();
 	},
+
+	deleteLibrary: function() {
+		localStorage.setItem(this.name, null);
+		this.load();
+	},
  
 	toJSON: function() {
 		return {
@@ -230,11 +235,6 @@ Library.prototype = {
 			this.view.classList.remove('blur')
 			footer.classList.remove('blur');
 		}
-	},
-
-	deleteLibrary: function() {
-		localStorage.setItem(this.name, null);
-		this.load();
 	}
  
 };
