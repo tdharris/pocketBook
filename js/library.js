@@ -238,6 +238,7 @@ Library.prototype = {
 			footer.classList.remove('blur');
 		}
 	},
+
 	multiselect: function(){
 		var listoftags=  ["walmart", "best", "hi"],
 			taglistUL = document.getElementById('taglistUL'),
@@ -249,8 +250,9 @@ Library.prototype = {
 				taglistLI.innerHTML = tag;
 				// taglistLI.setAttribute('id', tagdata);
 				taglistLI.onclick = function (){
-					self.data.tagList.push(tag);
-					console.log(self.data.tagList);
+					
+					taglistLI.classList.add('selected');
+
 				}
 				taglistUL.appendChild(taglistLI);
 			}
@@ -258,6 +260,10 @@ Library.prototype = {
 
 		listoftags.forEach(setupTagList(self));
 			
+	},
+
+	newTag: function(tag) {
+		self.data.tagList.push(tag);
 	}
  
 };
