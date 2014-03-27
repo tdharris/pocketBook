@@ -263,7 +263,13 @@ Library.prototype = {
 	},
 
 	newTag: function(tag) {
-		self.data.tagList.push(tag);
+		// Add to tagList only if it doesn't already exist
+		// Note: indexOf() returns 0:true, -1:false
+		if(this.data.tagList.indexOf(tag)) this.data.tagList.push(tag);
+	},
+
+	removeTag: function(tag) {
+		this.data.tagList.pop(tag);
 	}
  
 };
