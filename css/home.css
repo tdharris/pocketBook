@@ -305,7 +305,7 @@ ul { list-style: none; }
 
 #clickMe {
   cursor: pointer;
-  opacity: 0.5;
+  color: #727272;
 }
 /* Loading CSS Spinner */
   @-moz-keyframes spin {
@@ -729,6 +729,27 @@ a.openModal:focus {
   background: blue;
 }
 
+#taglistUL {
+  width: 100%;
+}
+
+#taglistUL input {
+  height: 21px;
+  width: 89.4%;
+  vertical-align:top;
+}
+
+#taglistUL i {
+  font-size: 1.5em;
+  color: white;
+  background-color: rgb(0, 120, 231);
+  margin: 0 0 0 10px;
+  padding: 1px 5px 0 5px;
+  line-height: inherit;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
 /*=======
 /********************To Be Merged Later****************************/
 /*#photo-container{

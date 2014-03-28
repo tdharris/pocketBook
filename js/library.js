@@ -18,6 +18,7 @@ Library.prototype = {
 		}
 
 		if(!this.data.tagList) this.data.tagList = [];
+		this.data.tagList = [];
 	},
 
 	save: function() {
@@ -70,6 +71,11 @@ Library.prototype = {
 		this.addToAppHandler('file-thingy', function(e) {
 			var file=e.target.files[0];
 			self.previewImage(file);
+		});
+
+		this.addToAppHandler('newTag', function(e) {
+			var tag = document.getElementById('tagName').value;
+			self.newTag(tag);
 		});
 
 	},
@@ -241,15 +247,16 @@ Library.prototype = {
 	},
 
 	multiselect: function(){
-		var listoftags=  ["walmart", "best", "hi"],
-			taglistUL = document.getElementById('taglistUL'),
-			self = this;
+		var self = this,
+			taglistUL = document.getElementById('taglistUL');
+
+		taglistUL.innerHTML = '<li><input id="tagName"><i id="newTag" class="fa fa-plus" onclick="handleRequest(event)"></i></li>';
 
 		function setupTagList(self) {
 			return function(tag) {
 				var taglistLI = document.createElement("li");
 				taglistLI.innerHTML = tag;
-				// taglistLI.setAttribute('id', tagdata);
+				
 				taglistLI.onclick = function (){
 					
 					if(taglistLI.classList.contains('selected')){
@@ -258,23 +265,22 @@ Library.prototype = {
 					else{
 						taglistLI.classList.add('selected');
 					}
-					
 
 				}
-				// taglistUL.innerHTML = '';
-				// taglistUL.innerHTML = '<li><input id="newTag"></li>';
+				
 				taglistUL.appendChild(taglistLI);
 			}
 		}
-
-		listoftags.forEach(setupTagList(self));
+	
+		this.data.tagList.forEach(setupTagList(self));
 			
 	},
 
 	newTag: function(tag) {
 		// Add to tagList only if it doesn't already exist
-		// Note: indexOf() returns 0:true, -1:false
-		if(this.data.tagList.indexOf(tag)) this.data.tagList.push(tag);
+		// Note: indexOf() returns arrayIndex:true, -1:false
+		// TODO: Remove leading and trailing whitespace
+		if(this.data.tagList.indexOf(tag) == -1 && isThereSomethingHere(tag)) this.data.tagList.push(tag);
 	},
 
 	removeTag: function(tag) {
