@@ -724,6 +724,11 @@ a.openModal:focus {
     background: -webkit-linear-gradient(#fff, #ccc);
     background: -o-linear-gradient(#fff, #ccc);
 }
+
+.selected{
+  background: blue;
+}
+
 /*=======
 /********************To Be Merged Later****************************/
 /*#photo-container{

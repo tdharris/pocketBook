@@ -38,6 +38,7 @@ Library.prototype = {
 		this.addToAppHandler('openMe', function() {
 			self.previewReset();
 			self.blur(true);
+			self.multiselect();
 			// var multi = new multiselect();
 		});
 
@@ -251,9 +252,17 @@ Library.prototype = {
 				// taglistLI.setAttribute('id', tagdata);
 				taglistLI.onclick = function (){
 					
-					taglistLI.classList.add('selected');
+					if(taglistLI.classList.contains('selected')){
+						taglistLI.classList.remove('selected');
+					}
+					else{
+						taglistLI.classList.add('selected');
+					}
+					
 
 				}
+				// taglistUL.innerHTML = '';
+				// taglistUL.innerHTML = '<li><input id="newTag"></li>';
 				taglistUL.appendChild(taglistLI);
 			}
 		}
