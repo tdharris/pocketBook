@@ -284,11 +284,14 @@ Library.prototype = {
 	},
 
 	newTag: function(tag) {
+		// Trim leading/trailing white-space
+		tag = tag.replace(/^\s+|\s+$/g,'');
+
 		// Add to tagList only if it doesn't already exist
 		// Note: indexOf() returns arrayIndex:true, -1:false
-		// TODO: Remove leading and trailing whitespace
 		if(this.data.tagList.indexOf(tag) == -1 && isThereSomethingHere(tag)) this.data.tagList.push(tag);
 
+		// Save to localStorage, reload tags
 		this.save();
 		this.multiselect();
 	},
