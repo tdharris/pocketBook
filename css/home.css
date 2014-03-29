@@ -764,6 +764,7 @@ a.openModal:focus {
 }
 
 .selected{
+  color: white;
   background: green;
   border: 1px solid white;
 }

@@ -70,6 +70,8 @@ Library.prototype = {
 			}, function() {
 				document.getElementById('closeMe').click();
 			});
+
+			self.multiselect();
 		});
 
 		this.addToAppHandler('file-thingy', function(e) {
