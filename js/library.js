@@ -71,7 +71,6 @@ Library.prototype = {
 				document.getElementById('closeMe').click();
 			});
 
-			self.multiselect();
 		});
 
 		this.addToAppHandler('file-thingy', function(e) {
@@ -233,6 +232,7 @@ Library.prototype = {
 	},
 
 	previewReset: function() {
+		this.multiselect();
 		document.getElementById('showMeImg').src = ''; 
 		document.getElementById('clickMe').style.display = 'block';
 		document.getElementById('showMe').style.display = 'none';

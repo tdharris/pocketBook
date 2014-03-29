@@ -57,7 +57,7 @@ html, body {
     margin: 0;
     font-family: "Gotham_SSm_4r",Helvetica,Arial,sans-serif;
 }
-header, footer { 
+/*header, footer { 
 	z-index: 1; 
 	position: fixed;
 	width: 100%;
@@ -67,9 +67,82 @@ header, footer {
 header {
 	top: 0;
 	z-index: 2;
+}*/
+i {
+  z-index: 1;
+  min-width: initial;
+  min-height: 31px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 44px;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 1px 12px 0 12px;
+  min-width: 32px;
+  min-height: 44px;
+  vertical-align: middle;
+  text-align: center;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
-footer {
-	bottom: 0;
+.h1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  margin: 0 15px;
+  min-width: 30px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+  line-height: 44px;
+}
+.bar {
+  background-color: #333;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 17px;
+}
+.bar-light {
+  position: absolute;
+  color: #000;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  height: 44px;
+  border-width: 0;
+  border-style: solid;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+}
+.top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+}
+.bottom {
+  width:100%;
+  position: absolute;
+  bottom: 0;
+  left:0;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+  background-position: top;
 }
 body {
     display: flex;
@@ -113,7 +186,7 @@ h1 {
 i { padding: 0 10px; }
 .pull-left { float: left; }
 .pull-right { float: right; }
-
+.fa-camera { line-height: normal;}
 /*
 
 	Main Content
@@ -257,7 +330,7 @@ ul { list-style: none; }
 
 .dropzone {
   cursor: pointer;
-  min-height: 150px;
+  height: 150px;
   margin-bottom: 5px;
   padding: 23px;
   /*border: 3px dashed rgba(0,0,0,0.08);*/
@@ -429,11 +502,12 @@ ul { list-style: none; }
 }
 
 /* Content */
-.modal > div {
-    max-width: 75%;
+.modal .content {
+    width: auto;
+    height: 90%;
     background: #fff;
     position: relative;
-    margin: 40px auto;
+    margin:auto;
 
     /* Default minimise animation */
     -webkit-animation: minimise 500ms linear;
@@ -441,7 +515,6 @@ ul { list-style: none; }
 
     /* Prettify */
     padding: 30px;
-    border-radius: 7px;
     box-shadow: 0 3px 20px rgba(0,0,0,0.9);
     background: #fff;
     background: -moz-linear-gradient(#fff, #ccc);
@@ -566,52 +639,6 @@ ul { list-style: none; }
   }
 }
 
-/* Modal close link */
-.modal a[href="#close"] {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    color: transparent;
-}
-
-/* Reset native styles */
-.modal a[href="#close"]:focus {
-    outline: none;
-}
-
-/* Create close button */
-.modal a[href="#close"]:after {
-    content: 'X';
-    display: block;
-
-    /* Position */
-    position: absolute;
-    right: -10px;
-    top: -10px;
-    width: 1.5em;
-    padding: 1px 1px 1px 2px;
-
-    /* Style */
-    text-decoration: none;
-    text-shadow: none;
-    text-align: center;
-    font-weight: bold;
-    background-color: #333;
-    color: #fff;
-    border: 2px solid #fff;
-    border-radius: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-
-    .modal a[href="#close"]:focus:after,
-    .modal a[href="#close"]:hover:after {
-    -webkit-transform: scale(1.1,1.1);
-    -moz-transform: scale(1.1,1.1);
-}
-
-.modal a[href="#close"]:focus:after {
-    outline: 1px solid #000;
-}
 
 /* Open modal */
 a.openModal {
@@ -726,9 +753,8 @@ a.openModal:focus {
 }
 
 #taglistUL {
-  width: 100%;
-  max-height: 100px; 
-  overflow: auto;
+  max-height:240px;
+  overflow-x:hidden;
   border: 1px solid rgba(0,0,0,0.08);
   background: white;
   margin-bottom:8px;
@@ -765,10 +791,20 @@ i:active {
 }
 
 #taglistUL li {
-  border: 1px solid rgba(0,0,0,0.08);
-  clear:left;
-  padding:8px;
-
+  color: #444;
+  background-color: #fff;
+  border-color: #ddd;
+  -webkit-transition: margin-left 0.2s ease-in-out, margin-right 0.2s ease-in-out, left 0.2s ease-in-out;
+  -moz-transition: margin-left 0.2s ease-in-out, margin-right 0.2s ease-in-out, left 0.2s ease-in-out;
+  transition: margin-left 0.2s ease-in-out, margin-right 0.2s ease-in-out, left 0.2s ease-in-out;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: -1px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 16px;
 }
 
 .selected{
@@ -783,6 +819,10 @@ i:active {
   background-color:#77b55a;
   border:1px solid #4b8f29;
   text-shadow:0px 1px 0px #5b8a3c;
+}
+#newReceipt {
+  width:85%;
+  margin:10px;
 }
 /*=======
 /********************To Be Merged Later****************************/

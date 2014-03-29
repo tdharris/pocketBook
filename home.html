@@ -17,8 +17,8 @@
 </head>
 
 	<body>
-		<header class="dark">
-			<h1>PocketBook</h1>
+		<header class="bar top">
+			<h1 class="h1">PocketBook</h1>
 			<i class="fa fa-share-square pull-right"></i>
 		</header>
 
@@ -27,7 +27,13 @@
 		</aside>
 
 		<aside id="modal" class="modal">
-		    <div>
+			
+		    <div class="content">
+		    	<div class="bar bar-light top">
+		    		<a id="closeMe" href="#close" onclick="handleRequest(event)"><i class="fa fa-chevron-left pull-left" style="line-height: 35px;"></i></a>
+		    		<div class="h1">New Item</div>
+		    		
+		    	</div>
 				<div id="dropzone" onclick="handleRequest(event)" action="#" class="dropzone flexcontainer-center">
 
 					<input type="file" id="file-thingy" onchange="handleRequest(event)" accept="image/*;capture=camera" style="display:none;" > 
@@ -47,19 +53,20 @@
 					<ul id="taglistUL">
 					</ul>
 				</div>
-				
-				
-				<button id="newReceipt" onclick="handleRequest(event)" class="pure-button pure-button-primary">Submit</button>
-		        <a id="closeMe" onclick="handleRequest(event)" href="#close" title="Close">Close</a>
 
+				<div class="bottom flexcontainer-center">
+					<button id="newReceipt" onclick="handleRequest(event)" class="pure-button pure-button-primary">Submit</button>
+				</div>
+				
 		    </div>
+		    
 		</aside>
 
 		<main>
 			<ul id="library" class="flexcontainer"></ul>
 		</main>
 
-	<footer class="dark">
+	<footer class="bar bottom">
 		<a href=""><i id="clearAll" onclick="handleRequest(event)" class="fa fa-exclamation-triangle pull-left"></i></a>
 		<a id="openMe" href="#modal" onclick="handleRequest(event)"><i class="fa fa-plus pull-right"></i></a>
 	</footer>
