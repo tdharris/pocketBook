@@ -20,8 +20,8 @@ Receipt.prototype = {
 		
 		// Set attributes
 		// TODO: dynamically set height/width
-		image.style.height = "180px";
-		image.style.width = "90px"
+		image.style.maxHeight = "180px";
+		image.style.maxWidth = "90px"
 		image.src = url;
 		tags.className = "tag-overlay";
 

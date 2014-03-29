@@ -257,7 +257,7 @@ ul { list-style: none; }
 
 .dropzone {
   cursor: pointer;
-  min-height: 250px;
+  min-height: 150px;
   margin-bottom: 5px;
   padding: 23px;
   /*border: 3px dashed rgba(0,0,0,0.08);*/
@@ -273,8 +273,8 @@ ul { list-style: none; }
   font-size: 4.5em;
 }
 #showMeImg {
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 150px;
+  max-width: 150px;
   background: rgba(255,255,255,0.8);
   border: 1px solid #acacac;
   padding: 6px;
@@ -725,30 +725,47 @@ a.openModal:focus {
     background: -o-linear-gradient(#fff, #ccc);
 }
 
-.selected{
-  background: blue;
-}
-
 #taglistUL {
   width: 100%;
+  max-height: 100px; 
+  overflow: auto;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: white;
+  margin-bottom:8px;
 }
 
-#taglistUL input {
+#multiselect input {
   height: 21px;
-  width: 89.4%;
+  width: 95%; 
   vertical-align:top;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  padding: 5px;
+  font-size: 1em;
+  float: left;
+  margin: 0 5px 5px 0;
 }
 
-#taglistUL i {
-  font-size: 1.5em;
-  color: white;
-  background-color: rgb(0, 120, 231);
-  margin: 0 0 0 10px;
-  padding: 1px 5px 0 5px;
+#multiselect i {
+  font-size: 1.7em;
+  color: green;
+  /* background-color: rgb(0, 120, 231); */
+  padding: 0 8px;
   line-height: inherit;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  right: 30px;
+  position: absolute;
+}
+
+#taglistUL li {
+  border: 1px solid rgba(0,0,0,0.08);
+  clear:left;
+  padding:8px;
+
+}
+
+.selected{
+  background: green;
+  border: 1px solid white;
 }
 /*=======
 /********************To Be Merged Later****************************/

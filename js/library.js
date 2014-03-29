@@ -18,7 +18,8 @@ Library.prototype = {
 		}
 
 		if(!this.data.tagList) this.data.tagList = [];
-		this.data.tagList = [];
+		// this.data.tagList = [];
+		this.multiselect();
 	},
 
 	save: function() {
@@ -38,9 +39,7 @@ Library.prototype = {
 
 		this.addToAppHandler('openMe', function() {
 			self.previewReset();
-			self.blur(true);
-			self.multiselect();
-			// var multi = new multiselect();
+			self.blur(true);			
 		});
 
 		this.addToAppHandler('closeMe', function() {
@@ -58,7 +57,12 @@ Library.prototype = {
 
 		this.addToAppHandler('newReceipt', function() {
 			var	fileThingy = document.getElementById('file-thingy'),
-				tags = ['tag1', 'tag2'];
+				tagsLI = document.getElementsByClassName('selected'),
+				tags = [];
+
+			for (var i = 0; i < tagsLI.length; i++) {
+				tags.push(tagsLI[i].innerText);
+			};
 
 			self.addReceipt({
 				"file": fileThingy.files[0],
@@ -76,6 +80,7 @@ Library.prototype = {
 		this.addToAppHandler('newTag', function(e) {
 			var tag = document.getElementById('tagName').value;
 			self.newTag(tag);
+			document.getElementById('tagName').value = '';
 		});
 
 	},
@@ -250,7 +255,7 @@ Library.prototype = {
 		var self = this,
 			taglistUL = document.getElementById('taglistUL');
 
-		taglistUL.innerHTML = '<li><input id="tagName"><i id="newTag" class="fa fa-plus" onclick="handleRequest(event)"></i></li>';
+		taglistUL.innerHTML = '';
 
 		function setupTagList(self) {
 			return function(tag) {
@@ -281,6 +286,9 @@ Library.prototype = {
 		// Note: indexOf() returns arrayIndex:true, -1:false
 		// TODO: Remove leading and trailing whitespace
 		if(this.data.tagList.indexOf(tag) == -1 && isThereSomethingHere(tag)) this.data.tagList.push(tag);
+
+		this.save();
+		this.multiselect();
 	},
 
 	removeTag: function(tag) {
