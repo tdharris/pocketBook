@@ -274,7 +274,7 @@ Library.prototype = {
 					}
 
 				}
-				
+
 				taglistUL.appendChild(taglistLI);
 			}
 		}

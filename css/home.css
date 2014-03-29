@@ -758,6 +758,7 @@ a.openModal:focus {
   border: 1px solid rgba(0,0,0,0.08);
   background: white;
   margin-bottom:8px;
+  clear:left;
 }
 
 #multiselect input {
@@ -824,6 +825,7 @@ i:active {
   width:85%;
   margin:10px;
 }
+
 /*=======
 /********************To Be Merged Later****************************/
 /*#photo-container{
