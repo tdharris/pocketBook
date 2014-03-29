@@ -48,7 +48,7 @@ Library.prototype = {
 		});
 
 		this.addToAppHandler('clearAll', function() {
-			self.deleteLibrary();
+			if(confirm('Delete the Library?! Are you for reals?')) self.deleteLibrary();
 		});
 
 		this.addToAppHandler('dropzone', function() {
