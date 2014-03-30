@@ -150,7 +150,7 @@ body {
 }
 main {
 	display: flex;
-    flex-direction: row;
+  flex-direction: row;
 	flex: auto;
 	padding: 10px;
 }
@@ -489,6 +489,7 @@ ul { list-style: none; }
     bottom: 0;
     background: rgba(0,0,0,0.5);
     z-index: 10000;
+    overflow:hidden;
 
     /* Transition opacity on open */
     -webkit-transition: opacity 500ms ease-in;
@@ -815,7 +816,7 @@ a.openModal:focus {
   min-height:inherit;
   position: absolute !important;
   top: 0 !important;
-  right: -5px !important;
+  right: 2px !important;
   font-size: 1.3em !important;
 }
 .visible {
