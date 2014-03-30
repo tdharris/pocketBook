@@ -14,7 +14,7 @@ Library.prototype = {
 		// default if it doesn't exist
 		if(!this.data) { 
 			this.data = { containers: {} };
-			this.view.innerHTML = '';
+			this.view.innerHTML = '<i class="fa fa-book"></i>';
 		}
 
 		if(!this.data.tagList) this.data.tagList = [];

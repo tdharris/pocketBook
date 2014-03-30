@@ -821,6 +821,12 @@ a.openModal:focus {
 .visible {
   visibility:visible;
 }
+
+.fa-book {
+  font-size: 6em;
+  color: #333;
+  top: 100px;
+}
 /*=======
 /********************To Be Merged Later****************************/
 /*#photo-container{
