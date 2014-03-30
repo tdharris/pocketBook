@@ -58,24 +58,35 @@ Library.prototype = {
 		this.addToAppHandler('newReceipt', function() {
 			var	fileThingy = document.getElementById('file-thingy'),
 				tagsLI = document.getElementsByClassName('selected'),
-				tags = [];
+				tags = [],
+				file = fileThingy.files[0];
 
-			for (var i = 0; i < tagsLI.length; i++) {
-				tags.push(tagsLI[i].innerText);
-			};
+			if (isThereSomethingHere(file)) {
+				for (var i = 0; i < tagsLI.length; i++) {
+					tags.push(tagsLI[i].innerText);
+				};
 
-			self.addReceipt({
-				"file": fileThingy.files[0],
-				"tags": tags
-			}, function() {
-				document.getElementById('closeMe').click();
-			});
+				self.addReceipt({
+					"file": file,
+					"tags": tags
+				}, function() {
+					document.getElementById('closeMe').click();
+				});
+			} else {
+				alert('Oops, looks like you forgot an image!');
+			}
 
 		});
 
 		this.addToAppHandler('file-thingy', function(e) {
 			var file=e.target.files[0];
-			self.previewImage(file);
+			// Verify there is an image
+			if(! file.type.indexOf('image') == -1) {
+				self.previewImage(file);
+			} else {
+				alert('Oops, that doesn\'t look like an image!');
+			}
+			
 		});
 
 		this.addToAppHandler('newTag', function(e) {
