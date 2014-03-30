@@ -338,9 +338,11 @@ Library.prototype = {
 	},
 
 	removeTag: function(taglistLI) {
+		var self = this;
 		this.data.tagList.pop(taglistLI.innerHTML);
 		this.save();
-		this.taglistUL.removeChild(taglistLI);
+		taglistLI.addEventListener("webkitAnimationStart", function() { sleep(600); self.taglistUL.removeChild(taglistLI); }, false);
+		taglistLI.classList.add("fadeOut");
 	},
 
 	renderNewTag: function(tag, done) {
