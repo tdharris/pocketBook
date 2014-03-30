@@ -265,34 +265,54 @@ Library.prototype = {
 	},
 
 	multiselect: function(){
-		var self = this,
-			taglistUL = document.getElementById('taglistUL');
-
-		taglistUL.innerHTML = '';
+		this.taglistUL = document.getElementById('taglistUL');
+		var self = this;
+		
+		this.taglistUL.innerHTML = '';
 
 		function setupTagList(self) {
 			return function(tag) {
 				var taglistLI = document.createElement("li");
 				taglistLI.innerHTML = tag;
 				
-				var i = document.createElement("i");
-				i.classList.add("fa", "fa-check",  "checkmark");
-				taglistLI.appendChild(i);
+				var checkmarkElement = document.createElement("i");
+				checkmarkElement.classList.add("fa", "fa-check",  "tagRight");
+				taglistLI.appendChild(checkmarkElement);
 
-				taglistLI.onclick = function (){
-					
+				var removeMeElement = document.createElement("i");
+				removeMeElement.classList.add("fa", "fa-minus-square", "tagRight");
+				taglistLI.appendChild(removeMeElement);
+
+				Hammer(taglistLI).on("tap", function(event) {
 					if(taglistLI.classList.contains('selected')){
 						taglistLI.classList.remove('selected');
-						i.style.visibility = "hidden";
+						checkmarkElement.style.visibility = "hidden";
 					}
 					else{
 						taglistLI.classList.add('selected');
-						i.style.visibility = "visible";
+						checkmarkElement.style.visibility = "visible";
 					}
+				});
 
-				}
+				Hammer(taglistLI).on("hold", function(event) {
+					checkmarkElement.style.visibility = "hidden";
+					if(taglistLI.classList.contains('removeMe')){
+				        taglistLI.classList.remove('removeMe');
+				        removeMeElement.style.visibility = "hidden";
+			    	} else{
+			    		taglistLI.classList.add('removeMe');
+			    		removeMeElement.style.visibility = "visible";
+			    	}
+			    	Hammer(taglistLI).on("dragleft dragright swipeleft swiperight", function(event){
+				    	self.removeTag(taglistLI);
+				    });
+			    });
 
-				taglistUL.appendChild(taglistLI);
+				Hammer(removeMeElement).on("tap", function(event){
+			    	self.removeTag(taglistLI);
+			    });
+
+				this.taglistUL.appendChild(taglistLI);
 			}
 		}
 	
@@ -317,33 +337,57 @@ Library.prototype = {
 		}
 	},
 
-	removeTag: function(tag) {
-		this.data.tagList.pop(tag);
+	removeTag: function(taglistLI) {
+		this.data.tagList.pop(taglistLI.innerHTML);
+		this.save();
+		this.taglistUL.removeChild(taglistLI);
 	},
 
 	renderNewTag: function(tag, done) {
 		var taglistLI = document.createElement("li");
-			taglistLI.innerHTML = tag;
+			taglistLI.innerHTML = tag,
+			self = this;
 			
-			var i = document.createElement("i");
-			i.classList.add("fa", "fa-check",  "checkmark");
-			taglistLI.appendChild(i);
+		var checkmarkElement = document.createElement("i");
+		checkmarkElement.classList.add("fa", "fa-check",  "tagRight");
+		taglistLI.appendChild(checkmarkElement);
 
-			taglistLI.onclick = function (){
-				
-				if(taglistLI.classList.contains('selected')){
+		var removeMeElement = document.createElement("i");
+		removeMeElement.classList.add("fa", "fa-minus-square", "tagRight");
+		taglistLI.appendChild(removeMeElement);
+
+		Hammer(taglistLI).on("tap", function(event) {
+			if(taglistLI.classList.contains('selected')){
 					taglistLI.classList.remove('selected');
-					i.style.visibility = "hidden";
-				}
-				else{
-					taglistLI.classList.add('selected');
-					i.style.visibility = "visible";
-				}
-
+					checkmarkElement.style.visibility = "hidden";
 			}
+			else{
+				taglistLI.classList.add('selected');
+				checkmarkElement.style.visibility = "visible";
+			}
+		});
 
 		taglistLI.classList.add('selected', 'animated', 'fadeIn');
-		i.style.visibility = "visible";
+		checkmarkElement.style.visibility = "visible";
+
+		Hammer(taglistLI).on("hold", function(event) {
+	        checkmarkElement.style.visibility = "hidden";
+			if(taglistLI.classList.contains('removeMe')){
+		        taglistLI.classList.remove('removeMe');
+		        removeMeElement.style.visibility = "hidden";
+	    	} else{
+	    		taglistLI.classList.add('removeMe');
+	    		removeMeElement.style.visibility = "visible";
+	    	}
+	    	Hammer(taglistLI).on("dragleft dragright swipeleft swiperight", function(event){
+		    	self.removeTag(taglistLI);
+		    });
+	    });
+
+	    Hammer(removeMeElement).on("tap", function(event){
+	    	self.removeTag(taglistLI);
+	    });
+
 		taglistUL.appendChild(taglistLI);
 		
 	}
