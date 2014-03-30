@@ -29,38 +29,35 @@
 
 		<aside id="modal" class="modal">
 			
-		    <div class="content">
-		    	<div class="bar bar-light top">
-		    		<a id="closeMe" href="#close" onclick="handleRequest(event)"><i class="fa fa-chevron-left pull-left" style="line-height: 35px;"></i></a>
-		    		<div class="h1">New Item</div>
-		    		
-		    	</div>
-				<div id="dropzone" onclick="handleRequest(event)" action="#" class="dropzone flexcontainer-center">
+	    	<div class="bar bar-light top">
+	    		<a id="closeMe" href="#close" onclick="handleRequest(event)"><i class="fa fa-chevron-left pull-left" style="line-height: 35px;"></i></a>
+	    		<div class="h1">New Item</div>
+	    		
+	    	</div>
+			<div id="dropzone" onclick="handleRequest(event)" action="#" class="dropzone flexcontainer-center">
 
-					<input type="file" id="file-thingy" onchange="handleRequest(event)" accept="image/*;capture=camera" style="display:none;" > 
+				<input type="file" id="file-thingy" onchange="handleRequest(event)" accept="image/*;capture=camera" style="display:none;" > 
 
-					<div id="clickMe" class="flexcontainer-center">
-						<i class="fa fa-camera opacity"></i>
-						<h4 class="opacity">Select Image</h4>
-					</div>
-
-					<div id="showMe">
-						<img id="showMeImg" src="">
-					</div>
-				
-				</div> 
-				<div id="multiselect">
-					<input id="tagName" placeholder="Enter a new tag">
-					<i id="newTag" class="fa fa-plus check" onclick="handleRequest(event)"></i>
-					<ul id="taglistUL">
-					</ul>
+				<div id="clickMe" class="flexcontainer-center">
+					<i class="fa fa-camera opacity"></i>
+					<h4 class="opacity">Select Image</h4>
 				</div>
 
-				<div class="bottom flexcontainer-center">
-					<button id="newReceipt" onclick="handleRequest(event)" class="pure-button pure-button-primary">Submit</button>
+				<div id="showMe">
+					<img id="showMeImg" src="">
 				</div>
-				
-		    </div>
+			
+			</div> 
+			<div id="multiselect">
+				<input id="tagName" placeholder="Enter a new tag">
+				<i id="newTag" class="fa fa-plus check" onclick="handleRequest(event)"></i>
+				<ul id="taglistUL">
+				</ul>
+			</div>
+
+			<div class="bottom flexcontainer-center">
+				<button id="newReceipt" onclick="handleRequest(event)" class="pure-button pure-button-primary">Submit</button>
+			</div>
 		    
 		</aside>
 

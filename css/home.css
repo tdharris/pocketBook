@@ -504,11 +504,9 @@ ul { list-style: none; }
 }
 
 /* Content */
-.modal .content {
-    width: auto;
-    height: 90%;
+.modal {
     background: #fff;
-    position: relative;
+    position: fixed;
     margin:auto;
 
     /* Default minimise animation */
