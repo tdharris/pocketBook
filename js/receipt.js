@@ -39,7 +39,14 @@ Receipt.prototype = {
 	},
 
 	setup: function() {
-		this.liReceipt.addEventListener('click', this.remove.bind(this));
+		var self = this;
+		Hammer(this.liReceipt).on("hold", function(event) { 
+			if(self.liReceipt.classList.contains('freakOut')){
+				self.liReceipt.classList.remove('freakOut');
+			} else {
+				self.liReceipt.classList.add('freakOut');
+			}
+		});
 	},
 
 	remove: function() {

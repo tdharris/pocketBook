@@ -831,6 +831,42 @@ a.openModal:focus {
   color: rgb(202,62,56) !important;
 }
 
+.freakOut {
+  animation: jiggle 0.2s infinite;
+  -webkit-animation: jiggle 0.2s infinite;
+  -moz-animation-duration: 0.2s;
+  -moz-animation-name: jiggle;
+  -moz-animation-iteration-count: infinite;
+  -webkit-transform: rotate(-1deg);
+  -moz-transform: rotate(-1deg);
+}
+@keyframes jiggle {
+    0% {
+        transform: rotate(-1deg);
+  }
+  50% {
+      transform: rotate(1deg);
+  }
+}
+
+@-webkit-keyframes jiggle {
+    0% {
+        -webkit-transform: rotate(-1deg);
+  }
+  50% {
+      -webkit-transform: rotate(1deg);
+  }
+}
+
+@-moz-keyframes jiggle {
+    0% {
+        -moz-transform: rotate(-1deg);
+  }
+  50% {
+    -moz-transform: rotate(1deg);
+  }
+}
+
 /*=======
 /********************To Be Merged Later****************************/
 /*#photo-container{
