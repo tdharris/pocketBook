@@ -195,7 +195,7 @@ i { padding: 0 10px; }
 
 #library{
 	margin: 15px auto;
-	padding: 10px;
+	padding: 5px 0 10px 0;
 	/*max-width: 900px;
 	min-height: 500px;*/
 	max-width: 90%;
