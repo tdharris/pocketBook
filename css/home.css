@@ -824,8 +824,8 @@ a.openModal:focus {
 
 .fa-book {
   font-size: 6em;
-  color: #333;
   top: 100px;
+  color: rgb(0, 120, 231);
 }
 /*=======
 /********************To Be Merged Later****************************/
