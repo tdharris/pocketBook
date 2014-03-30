@@ -264,13 +264,19 @@ Library.prototype = {
 				var taglistLI = document.createElement("li");
 				taglistLI.innerHTML = tag;
 				
+				var i = document.createElement("i");
+				i.classList.add("fa", "fa-check",  "checkmark");
+				taglistLI.appendChild(i);
+
 				taglistLI.onclick = function (){
 					
 					if(taglistLI.classList.contains('selected')){
 						taglistLI.classList.remove('selected');
+						i.style.visibility = "hidden";
 					}
 					else{
 						taglistLI.classList.add('selected');
+						i.style.visibility = "visible";
 					}
 
 				}
@@ -289,15 +295,46 @@ Library.prototype = {
 
 		// Add to tagList only if it doesn't already exist
 		// Note: indexOf() returns arrayIndex:true, -1:false
-		if(this.data.tagList.indexOf(tag) == -1 && isThereSomethingHere(tag)) this.data.tagList.push(tag);
+		if(this.data.tagList.indexOf(tag) == -1 && isThereSomethingHere(tag)) {
+			this.data.tagList.push(tag);
 
-		// Save to localStorage, reload tags
-		this.save();
-		this.multiselect();
+			// Save to localStorage, reload tags
+			this.save();
+
+			// Append to view
+			this.renderNewTag(tag);
+		}
 	},
 
 	removeTag: function(tag) {
 		this.data.tagList.pop(tag);
+	},
+
+	renderNewTag: function(tag, done) {
+		var taglistLI = document.createElement("li");
+			taglistLI.innerHTML = tag;
+			
+			var i = document.createElement("i");
+			i.classList.add("fa", "fa-check",  "checkmark");
+			taglistLI.appendChild(i);
+
+			taglistLI.onclick = function (){
+				
+				if(taglistLI.classList.contains('selected')){
+					taglistLI.classList.remove('selected');
+					i.style.visibility = "hidden";
+				}
+				else{
+					taglistLI.classList.add('selected');
+					i.style.visibility = "visible";
+				}
+
+			}
+
+		taglistLI.classList.add('selected', 'animated', 'fadeIn');
+		i.style.visibility = "visible";
+		taglistUL.appendChild(taglistLI);
+		
 	}
  
 };
