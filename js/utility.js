@@ -19,6 +19,9 @@ function isThereSomethingHere(obj) {
     if (obj.length > 0)    return true;
     if (obj.length === 0)  return false;
 
+    // Check files
+    if (obj.name !== null || obj.name !== undefined) return true;
+
     // Otherwise, does it have any properties of its own?
     // Note that this doesn't handle
     // toString and valueOf enumeration bugs in IE < 9

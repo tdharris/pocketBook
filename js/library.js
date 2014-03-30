@@ -81,7 +81,7 @@ Library.prototype = {
 		this.addToAppHandler('file-thingy', function(e) {
 			var file=e.target.files[0];
 			// Verify there is an image
-			if(! file.type.indexOf('image') == -1) {
+			if(file.type.indexOf('image') !== -1) {
 				self.previewImage(file);
 			} else {
 				alert('Oops, that doesn\'t look like an image!');

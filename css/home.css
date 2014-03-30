@@ -237,10 +237,12 @@ i { padding: 0 10px; }
 }
 
 ul { list-style: none; }
+
+/* Receipt LI */
 #library > li > ul > li {
 	float: left;
 	width: 100px;
-	height: 200px;
+	height: auto;
 	margin: 10px;
 	padding: 2px;
 	background: #fff;
@@ -276,12 +278,14 @@ ul { list-style: none; }
 .tag-overlay {
 	padding: 2px;
 	height: auto;
+	max-height: 100%;
 	background-color: rgba(0,0,0,0.5);
 	position: absolute;
 	bottom:0;
 	left:0;
 	width: 100px; 
 	color: #fff;
+	overflow: hidden;
 }
 .tag-overlay > li {
 	float: center;

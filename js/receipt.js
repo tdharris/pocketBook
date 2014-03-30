@@ -19,7 +19,6 @@ Receipt.prototype = {
 			tags = document.createElement("ul");
 		
 		// Set attributes
-		// TODO: dynamically set height/width
 		image.style.maxHeight = "180px";
 		image.style.maxWidth = "90px"
 		image.src = url;
