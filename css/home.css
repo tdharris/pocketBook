@@ -508,7 +508,7 @@ ul { list-style: none; }
 }
 
 #errorMsg {
- background: rgba(190, 190, 190, 0.3);
+ background: rgba(255, 255, 255, 1);
  position: absolute;
  bottom: 0;
  color: #ca3e38;
