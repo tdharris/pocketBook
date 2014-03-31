@@ -27,10 +27,6 @@
 			<i class="fa fa-share-square pull-right"></i>
 		</header>
 
-		<aside id="photo-container" class="sliderdeactivated">
-			<input type="file" id="take-picture" accept="image/*">
-		</aside>
-
 		<aside id="modal" class="modal">
 			
 	    	<div class="bar bar-light top">
@@ -50,8 +46,11 @@
 				<div id="showMe">
 					<img id="showMeImg" src="">
 				</div>
+
+				<div id="errorMsg"></div>
 			
 			</div> 
+
 			<div id="multiselect">
 				<input id="tagName" placeholder="Enter a new tag">
 				<i id="newTag" class="fa fa-plus-circle" onclick="handleRequest(event)"></i>

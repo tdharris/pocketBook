@@ -338,12 +338,14 @@ ul { list-style: none; }
 
 .dropzone {
   cursor: pointer;
-  height: 150px;
-  margin-bottom: 5px;
-  padding: 23px;
+  height: 163px;
+  margin: 13px 0 5px 0;
+  padding: 10px;
   /*border: 3px dashed rgba(0,0,0,0.08);*/
   border: 1px solid rgba(0,0,0,0.08);
   background: rgba(0,0,0,0.02);
+  position: relative;
+  border-top:  none;
 }
 
 #showMe {
@@ -501,8 +503,33 @@ ul { list-style: none; }
     /* Hide for now */
     opacity: 0;
     pointer-events: none;
+    
+
 }
 
+#errorMsg {
+ background: rgba(190, 190, 190, 0.3);
+ position: absolute;
+ bottom: 0;
+ color: #ca3e38;
+ text-align: center;
+ visibility: hidden;
+ font-size: 0.7em !important;
+ font-weight: bold;
+ height: 25px;
+ line-height: 25px;
+ vertical-align: top;
+ width:100%;
+ margin-left: -10px;
+}
+.fa-exclamation {
+  height: 15px;
+  padding:0;
+  margin:0;
+  vertical-align: top;
+  line-height:25px;
+  font-size:1.25em;
+}
 /* Show modal */
 .modal:target {
     opacity: 1;

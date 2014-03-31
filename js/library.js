@@ -56,6 +56,7 @@ Library.prototype = {
 		});
 
 		this.addToAppHandler('newReceipt', function() {
+			self.clearError();
 			var	fileThingy = document.getElementById('file-thingy'),
 				tagsLI = document.getElementsByClassName('selected'),
 				tags = [],
@@ -73,18 +74,20 @@ Library.prototype = {
 					document.getElementById('closeMe').click();
 				});
 			} else {
-				alert('Oops, looks like you forgot an image!');
+				self.newError('Oops, looks like you forgot an image!');
 			}
 
 		});
 
 		this.addToAppHandler('file-thingy', function(e) {
+			self.clearError();
+			self.previewReset();
 			var file=e.target.files[0];
 			// Verify there is an image
 			if(file.type.indexOf('image') !== -1) {
 				self.previewImage(file);
 			} else {
-				alert('Oops, that doesn\'t look like an image!');
+				self.newError('Oops, that doesn\'t look like an image!');
 			}
 			
 		});
@@ -95,6 +98,18 @@ Library.prototype = {
 			document.getElementById('tagName').value = '';
 		});
 
+	},
+
+	newError: function(errorMsg) {
+		var popup = document.getElementById('errorMsg');
+		popup.innerHTML = '<i class="fa fa-exclamation"></i>' + errorMsg;
+		popup.style.visibility = "visible";
+	},
+
+	clearError: function() {
+		var popup = document.getElementById('errorMsg');
+		popup.innerHTML = '';
+		popup.style.visibility = "hidden";
 	},
 
 	addToAppHandler: function(akey, newFunction) {
