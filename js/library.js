@@ -102,7 +102,7 @@ Library.prototype = {
 
 	newError: function(errorMsg) {
 		var popup = document.getElementById('errorMsg');
-		popup.innerHTML = '<i class="fa fa-exclamation"></i>' + errorMsg;
+		popup.innerHTML = '<i class="fa fa-exclamation-circle"></i>' + errorMsg;
 		popup.style.visibility = "visible";
 	},
 
@@ -283,51 +283,62 @@ Library.prototype = {
 		this.taglistUL = document.getElementById('taglistUL');
 		var self = this;
 		
-		this.taglistUL.innerHTML = '';
+		self.taglistUL.innerHTML = '';
 
 		function setupTagList(self) {
 			return function(tag) {
 				var taglistLI = document.createElement("li");
 				taglistLI.innerHTML = tag;
 				
-				var checkmarkElement = document.createElement("i");
-				checkmarkElement.classList.add("fa", "fa-check",  "tagRight");
-				taglistLI.appendChild(checkmarkElement);
+				taglistLI.checkmarkElement = document.createElement("i");
+				taglistLI.checkmarkElement.classList.add("fa", "fa-check",  "tagRight");
+				taglistLI.appendChild(taglistLI.checkmarkElement);
 
-				var removeMeElement = document.createElement("i");
-				removeMeElement.classList.add("fa", "fa-minus-square", "tagRight");
-				taglistLI.appendChild(removeMeElement);
+				taglistLI.removeMeElement = document.createElement("i");
+				taglistLI.removeMeElement.classList.add("fa", "fa-minus-square", "tagRight");
+				taglistLI.appendChild(taglistLI.removeMeElement);
 
 				Hammer(taglistLI).on("tap", function(event) {
 					if(taglistLI.classList.contains('selected')){
 						taglistLI.classList.remove('selected');
-						checkmarkElement.style.visibility = "hidden";
+						taglistLI.checkmarkElement.style.visibility = "hidden";
 					}
 					else{
 						taglistLI.classList.add('selected');
-						checkmarkElement.style.visibility = "visible";
+						taglistLI.checkmarkElement.style.visibility = "visible";
 					}
 				});
 
 				Hammer(taglistLI).on("hold", function(event) {
-					checkmarkElement.style.visibility = "hidden";
-					if(taglistLI.classList.contains('removeMe')){
-				        taglistLI.classList.remove('removeMe');
-				        removeMeElement.style.visibility = "hidden";
-			    	} else{
-			    		taglistLI.classList.add('removeMe');
-			    		removeMeElement.style.visibility = "visible";
-			    	}
-			    	Hammer(taglistLI).on("dragleft dragright swipeleft swiperight", function(event){
-				    	self.removeTag(taglistLI);
-				    });
+					var items = self.taglistUL.getElementsByTagName("li");
+					items = Array.prototype.slice.call(items);
+
+					// TODO: rewrite as renderTagList and setupTagList using forEach on UL
+					items.forEach(function(elementLI) { 
+						// elementLI.removeMeElement.style.visibility = "visible";
+					    elementLI.checkmarkElement.style.visibility = "hidden";
+
+						if(elementLI.classList.contains('removeMe')){
+					        elementLI.classList.remove('removeMe');
+					        elementLI.removeMeElement.style.visibility = "hidden";
+				    	} else{
+				    		elementLI.classList.add('removeMe');
+				    		elementLI.removeMeElement.style.visibility = "visible";
+
+				    		Hammer(elementLI).on("dragleft dragright swipeleft swiperight", function(event){
+						    	self.removeTag(elementLI);
+						    });
+
+						    Hammer(elementLI.removeMeElement).on("tap", function(event){
+						    	self.removeTag(elementLI);
+						    });
+				    	}
+
+					});
+					
 			    });
 
-				Hammer(removeMeElement).on("tap", function(event){
-			    	self.removeTag(taglistLI);
-			    });
-
-				this.taglistUL.appendChild(taglistLI);
+				self.taglistUL.appendChild(taglistLI);
 			}
 		}
 	
@@ -356,7 +367,7 @@ Library.prototype = {
 		var self = this;
 		this.data.tagList.pop(taglistLI.innerHTML);
 		this.save();
-		taglistLI.addEventListener("webkitAnimationStart", function() { sleep(600); self.taglistUL.removeChild(taglistLI); }, false);
+		taglistLI.addEventListener("webkitAnimationStart", function() { sleep(600); self.taglistUL.removeChild(taglistLI); });
 		taglistLI.classList.add("fadeOut");
 	},
 
@@ -364,48 +375,60 @@ Library.prototype = {
 		var taglistLI = document.createElement("li");
 			taglistLI.innerHTML = tag,
 			self = this;
-			
-		var checkmarkElement = document.createElement("i");
-		checkmarkElement.classList.add("fa", "fa-check",  "tagRight");
-		taglistLI.appendChild(checkmarkElement);
 
-		var removeMeElement = document.createElement("i");
-		removeMeElement.classList.add("fa", "fa-minus-square", "tagRight");
-		taglistLI.appendChild(removeMeElement);
+		taglistLI.checkmarkElement = document.createElement("i");
+		taglistLI.checkmarkElement.classList.add("fa", "fa-check",  "tagRight");
+		taglistLI.appendChild(taglistLI.checkmarkElement);
+
+		taglistLI.removeMeElement = document.createElement("i");
+		taglistLI.removeMeElement.classList.add("fa", "fa-minus-square", "tagRight");
+		taglistLI.appendChild(taglistLI.removeMeElement);
+
+		// Because it's a new receipt, auto select it
+		taglistLI.classList.add('selected', 'animated', 'fadeIn');
+		taglistLI.checkmarkElement.style.visibility = "visible";
 
 		Hammer(taglistLI).on("tap", function(event) {
 			if(taglistLI.classList.contains('selected')){
-					taglistLI.classList.remove('selected');
-					checkmarkElement.style.visibility = "hidden";
+				taglistLI.classList.remove('selected');
+				taglistLI.checkmarkElement.style.visibility = "hidden";
 			}
 			else{
 				taglistLI.classList.add('selected');
-				checkmarkElement.style.visibility = "visible";
+				taglistLI.checkmarkElement.style.visibility = "visible";
 			}
 		});
 
-		taglistLI.classList.add('selected', 'animated', 'fadeIn');
-		checkmarkElement.style.visibility = "visible";
-
 		Hammer(taglistLI).on("hold", function(event) {
-	        checkmarkElement.style.visibility = "hidden";
-			if(taglistLI.classList.contains('removeMe')){
-		        taglistLI.classList.remove('removeMe');
-		        removeMeElement.style.visibility = "hidden";
-	    	} else{
-	    		taglistLI.classList.add('removeMe');
-	    		removeMeElement.style.visibility = "visible";
-	    	}
-	    	Hammer(taglistLI).on("dragleft dragright swipeleft swiperight", function(event){
-		    	self.removeTag(taglistLI);
-		    });
-	    });
+			var items = self.taglistUL.getElementsByTagName("li");
+			items = Array.prototype.slice.call(items);
 
-	    Hammer(removeMeElement).on("tap", function(event){
-	    	self.removeTag(taglistLI);
-	    });
+			// TODO: rewrite as renderTagList and setupTagList using forEach on UL
+			items.forEach(function(elementLI) { 
+				// elementLI.removeMeElement.style.visibility = "visible";
+			    elementLI.checkmarkElement.style.visibility = "hidden";
 
-		taglistUL.appendChild(taglistLI);
+				if(elementLI.classList.contains('removeMe')){
+			        elementLI.classList.remove('removeMe');
+			        elementLI.removeMeElement.style.visibility = "hidden";
+		    	} else{
+		    		elementLI.classList.add('removeMe');
+		    		elementLI.removeMeElement.style.visibility = "visible";
+
+		    		Hammer(elementLI).on("dragleft dragright swipeleft swiperight", function(event){
+				    	self.removeTag(elementLI);
+				    });
+
+				    Hammer(elementLI.removeMeElement).on("tap", function(event){
+				    	self.removeTag(elementLI);
+				    });
+		    	}
+
+			});
+
+		});
+
+		this.taglistUL.appendChild(taglistLI);
 		
 	}
  
