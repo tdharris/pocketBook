@@ -88,6 +88,7 @@ Library.prototype = {
 				self.previewImage(file);
 			} else {
 				self.newError('Oops, that doesn\'t look like an image!');
+				document.getElementById('file-thingy').value = null;
 			}
 			
 		});

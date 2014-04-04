@@ -30,5 +30,7 @@ var newReceipts = {
    }
 }
 
+newReceipts.tagList = ['market', 'subway', 'trip'];
+
 /* Put the JSON object into local storage */
 localStorage.setItem("pbReceipts", JSON.stringify(newReceipts)); 
